@@ -1146,7 +1146,7 @@ const pins = [
   { id: 'ring', type: 'golf', name: 'Ring of Kerry GC', lat: 51.8747, lng: -9.6721, desc: 'Sun 9/13 · 8:30/8:40 · $212/pp' },
   { id: 'kenmare-gc', type: 'golf', name: 'Kenmare GC', lat: 51.8819, lng: -9.5830, desc: 'Sun 9/13 · 2:30/2:40 · $95/pp' },
   { id: 'bnb', type: 'stay', name: 'Airbnb — Templenoe', lat: 51.8555, lng: -9.7355, desc: 'V93 F9V3, Greenane, Co. Kerry' },
-  { id: 'spillanes', type: 'pub', name: "Spillane's Bar", lat: 51.8510, lng: -9.7345, desc: 'Templenoe · Local bar right on the N70 · Closest pub to the Airbnb' },
+  { id: 'spillanes', type: 'pub', name: "Pat Spillane's Bar", lat: 51.8525, lng: -9.7340, desc: "Templenoe · Named for Kerry GAA legend Pat Spillane · Right on the Ring of Kerry (N70)" },
   { id: 'reidys', type: 'pub', name: "JM Reidy's", lat: 52.0599, lng: -9.5044, desc: 'Killarney · Pub crawl · Classic spot' },
   { id: 'courtneys', type: 'pub', name: "Courtney's", lat: 52.0582, lng: -9.5051, desc: 'Killarney · Trad music' },
   { id: 'murphys', type: 'pub', name: "Murphy's", lat: 52.0610, lng: -9.5049, desc: 'Killarney · Pub crawl' },
@@ -1178,12 +1178,15 @@ const drivesFromAirbnb = {
 };
 
 // Google Maps helpers
+// Use coordinate-pinned URLs so the map opens at the exact spot regardless of user's location
 function gmapsSearch(name, lat, lng) {
-  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(name)}&center=${lat},${lng}`;
+  // This format pins the map to the exact coordinates and labels it with the name
+  return `https://www.google.com/maps/search/${encodeURIComponent(name)}/@${lat},${lng},17z`;
 }
 function gmapsDirections(originText, toLat, toLng, destName) {
-  // originText can be an Eircode or address string; Google Maps will geocode it
-  return `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(originText)}&destination=${toLat},${toLng}&travelmode=driving&destination_place_id=${encodeURIComponent(destName || '')}`;
+  // originText can be an Eircode or address string; destination uses coords + name
+  const dest = destName ? `${encodeURIComponent(destName)}/@${toLat},${toLng},17z` : `${toLat},${toLng}`;
+  return `https://www.google.com/maps/dir/${encodeURIComponent(originText)}/${dest}`;
 }
 function findPin(id) { return pins.find(p => p.id === id); }
 
