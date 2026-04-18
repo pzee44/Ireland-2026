@@ -1147,7 +1147,7 @@ const pins = [
   { id: 'dooks', type: 'golf', name: 'Dooks', lat: 52.0827, lng: -9.9255, eircode: 'V93 XP03', desc: 'Knockaunroe, Glenbeigh · Mon 9/14 · 8:30/8:40' },
   { id: 'water', type: 'golf', name: 'Waterville Golf Links', lat: 51.8391, lng: -10.1954, eircode: 'V23 W940', desc: 'Murreagh, Waterville · Tue 9/15 · 8:10/8:20' },
   { id: 'ring', type: 'golf', name: 'Ring of Kerry GC', lat: 51.87473, lng: -9.67211, eircode: 'V93 AK85', desc: 'Greenane, Templenoe · Sun 9/13 · 8:40 AM' },
-  { id: 'kenmare-gc', type: 'golf', name: 'Kenmare GC', lat: 51.8847, lng: -9.5760, eircode: 'V93 XW8E', desc: 'Killowen Road, Kenmare · Sun 9/13 · 2:30/2:40' },
+  { id: 'kenmare-gc', type: 'golf', name: 'Kenmare GC', lat: 51.8860, lng: -9.5690, eircode: 'V93 XW8E', desc: 'Killowen Road, Kenmare · Sun 9/13 · 2:30/2:40' },
 
   // STAY
   { id: 'bnb', type: 'stay', name: 'Airbnb — Templenoe', lat: 51.8695, lng: -9.6810, eircode: 'V93 F9V3', desc: 'V93 F9V3, Greenane, Co. Kerry' },
@@ -1161,7 +1161,7 @@ const pins = [
   { id: 'jackcs', type: 'pub', name: "Jack C's Bar", lat: 52.0613, lng: -9.5112, desc: "Killarney (north end of town) · Tiny family pub since 1901" },
 
   // PUBS — ELSEWHERE (coordinates from Google Maps screenshots)
-  { id: 'spillanes', type: 'pub', name: "Spillane's Bar", lat: 51.8630, lng: -9.6900, eircode: 'V93 F623', desc: "Greenane, Templenoe · Named for Kerry GAA legend Pat Spillane · Closest pub to the Airbnb" },
+  { id: 'spillanes', type: 'pub', name: "Spillane's Bar", lat: 51.8633, lng: -9.7000, eircode: 'V93 F623', desc: "Greenane, Templenoe · Named for Kerry GAA legend Pat Spillane · Right on the N70 in Templenoe village" },
   { id: 'blindpiper', type: 'pub', name: 'The Blind Piper', lat: 51.7585, lng: -10.0730, eircode: 'V93 DD83', desc: 'Caherdaniel · Famous Ring of Kerry pub · Trad music Thursdays' },
   { id: 'doshea', type: 'pub', name: "D. O'Shea's Bar", lat: 51.8376, lng: -9.9052, desc: "North Square, Sneem · Atmospheric traditional bar" },
   { id: 'redfox', type: 'pub', name: 'The Red Fox Inn', lat: 52.0905, lng: -9.8495, desc: 'Caragh Bridge · On N70 between Killorglin & Glenbeigh · Famous for Irish coffee · Next to Kerry Bog Village' },
@@ -1538,6 +1538,42 @@ function initLeafletMap() {
     attribution: '© OpenStreetMap', maxZoom: 18
   }).addTo(leafletMap);
 
+  // Geocoding: resolve Eircode/address to real coordinates via Nominatim.
+  // Cached in localStorage so this only hits the API once per pin, ever.
+  async function geocode(query) {
+    if (!query) return null;
+    const cacheKey = 'geocode:' + query;
+    try {
+      const cached = localStorage.getItem(cacheKey);
+      if (cached) return JSON.parse(cached);
+    } catch (e) {}
+    try {
+      const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=1&countrycodes=ie`;
+      const res = await fetch(url, { headers: { 'Accept-Language': 'en' } });
+      if (!res.ok) return null;
+      const data = await res.json();
+      if (!data || !data.length) return null;
+      const result = { lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon) };
+      try { localStorage.setItem(cacheKey, JSON.stringify(result)); } catch (e) {}
+      return result;
+    } catch (e) { return null; }
+  }
+
+  // Build marker now with its current coords, then async-resolve the real position
+  // and update the marker if geocoding succeeds. Pins without Eircode stay put.
+  async function refinePinPosition(pin, marker) {
+    // Prefer Eircode → fall back to name + town from desc → fall back to nothing
+    const query = pin.eircode || (pin.desc && pin.desc.match(/^[^·]+/) ? `${pin.name}, ${pin.desc.match(/^[^·]+/)[0].trim()}, Ireland` : null);
+    if (!query) return;
+    const geo = await geocode(query);
+    if (geo && Math.abs(geo.lat - pin.lat) + Math.abs(geo.lng - pin.lng) > 0.001) {
+      // Only move if the geocoded position differs meaningfully from our stored position
+      marker.setLatLng([geo.lat, geo.lng]);
+      pin.lat = geo.lat;  // update stored pin so route lines use correct coord
+      pin.lng = geo.lng;
+    }
+  }
+
   pins.forEach(p => {
     const marker = L.marker([p.lat, p.lng], { icon: makePinIcon(p.type) });
 
@@ -1576,6 +1612,8 @@ function initLeafletMap() {
       `;
     });
     pinLayers[p.type].addLayer(marker);
+    // Asynchronously refine pin position using Eircode/address geocoding
+    refinePinPosition(p, marker);
   });
   Object.values(pinLayers).forEach(l => l.addTo(leafletMap));
 
