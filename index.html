@@ -13,9 +13,28 @@
     --ink: #1a1a17;
     --ink-soft: #3d3d38;
     --red-seal: #8b2c1f;
+    --card-bg: #ffffff;
+    --card-border: rgba(31, 58, 46, 0.1);
+    --divider: rgba(31, 58, 46, 0.15);
     --shadow-soft: 0 2px 8px rgba(21, 39, 32, 0.08);
     --shadow-med: 0 8px 24px rgba(21, 39, 32, 0.15);
     --shadow-deep: 0 20px 60px rgba(21, 39, 32, 0.25);
+  }
+
+  /* Dark mode palette — "clubhouse at night" */
+  [data-theme="dark"] {
+    --parchment: #1a1f1c;
+    --cream-warm: #2a2f2c;
+    --ink: #e8e3d0;
+    --ink-soft: #a8a49a;
+    --card-bg: #232826;
+    --card-border: rgba(180, 138, 62, 0.15);
+    --divider: rgba(180, 138, 62, 0.15);
+    --forest-deep: #e8e3d0;
+    --forest: #c0b698;
+    --moss: #8a9585;
+    --shadow-soft: 0 2px 8px rgba(0, 0, 0, 0.4);
+    --shadow-med: 0 8px 24px rgba(0, 0, 0, 0.5);
   }
 
   @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Cormorant+SC:wght@400;500;600;700&display=swap');
@@ -708,6 +727,185 @@
   }
   .course-wx .wx-details { color: var(--ink-soft); }
 
+  /* ===== THEME TOGGLE ===== */
+  .theme-toggle {
+    position: fixed;
+    bottom: 1.5rem;
+    right: 1.5rem;
+    z-index: 100;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 1px solid var(--brass);
+    background: var(--forest-deep);
+    color: var(--brass-bright);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-med);
+    transition: all 0.3s;
+  }
+  [data-theme="dark"] .theme-toggle {
+    background: #1a1f1c;
+    color: var(--brass-bright);
+  }
+  .theme-toggle:hover { transform: scale(1.08) rotate(12deg); }
+  .theme-toggle svg { width: 22px; height: 22px; fill: currentColor; transition: all 0.3s; }
+  .theme-toggle .sun-icon { display: none; }
+  [data-theme="dark"] .theme-toggle .sun-icon { display: block; }
+  [data-theme="dark"] .theme-toggle .moon-icon { display: none; }
+
+  /* ===== TRIVIA CARD ===== */
+  .trivia-card {
+    max-width: 720px;
+    margin: 0 auto 2.5rem;
+    padding: 1.75rem 2rem;
+    background: linear-gradient(135deg, var(--forest) 0%, var(--forest-deep) 100%);
+    color: var(--cream);
+    border-left: 4px solid var(--brass-bright);
+    border-radius: 2px;
+    box-shadow: var(--shadow-med);
+    position: relative;
+    overflow: hidden;
+    min-height: 130px;
+  }
+  [data-theme="dark"] .trivia-card {
+    background: linear-gradient(135deg, #1a241f 0%, #0d1512 100%);
+  }
+  .trivia-card::before {
+    content: '❦';
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    font-size: 2rem;
+    color: var(--brass);
+    opacity: 0.3;
+  }
+  .trivia-label {
+    font-family: 'Cormorant SC', serif;
+    letter-spacing: 0.3em;
+    color: var(--brass-bright);
+    font-size: 0.7rem;
+    margin-bottom: 0.75rem;
+  }
+  .trivia-content {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.35rem;
+    font-style: italic;
+    line-height: 1.45;
+    min-height: 3em;
+    animation: triviaIn 0.6s ease;
+  }
+  .trivia-content .phrase {
+    font-size: 1.6rem;
+    font-style: normal;
+    font-weight: 600;
+    color: var(--brass-bright);
+    display: block;
+    margin-bottom: 0.35rem;
+  }
+  .trivia-content .translation {
+    font-size: 1rem;
+    opacity: 0.8;
+    font-style: italic;
+  }
+  .trivia-attr {
+    font-family: 'Cormorant SC', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--brass);
+    margin-top: 0.75rem;
+    opacity: 0.8;
+  }
+  @keyframes triviaIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: none; }
+  }
+
+  /* ===== COURSE LORE / FAMOUS ===== */
+  .course-lore, .course-famous {
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px dashed var(--divider);
+  }
+  .lore-label {
+    font-family: 'Cormorant SC', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.25em;
+    color: var(--brass);
+    margin-bottom: 0.5rem;
+  }
+  .course-lore p {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    font-style: italic;
+  }
+  .famous-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .famous-tag {
+    font-family: 'Libre Caslon Text', serif;
+    font-size: 0.75rem;
+    padding: 0.25rem 0.6rem;
+    background: var(--cream-warm);
+    color: var(--forest-deep);
+    border: 1px solid var(--divider);
+    border-radius: 2px;
+  }
+  [data-theme="dark"] .famous-tag {
+    background: #2a2f2c;
+    color: var(--brass-bright);
+    border-color: rgba(180, 138, 62, 0.2);
+  }
+
+  /* ===== SPOTIFY ===== */
+  .spotify-block {
+    max-width: 720px;
+    margin: 3rem auto 0;
+    padding: 1.5rem;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    box-shadow: var(--shadow-soft);
+    border-top: 3px solid var(--brass);
+  }
+  .spotify-block h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-style: italic;
+    color: var(--forest-deep);
+    margin-bottom: 0.25rem;
+  }
+  .spotify-block .spotify-sub {
+    font-family: 'Cormorant SC', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    color: var(--brass);
+    margin-bottom: 1rem;
+  }
+  .spotify-block iframe {
+    border-radius: 12px;
+    width: 100%;
+    height: 152px;
+    border: none;
+  }
+
+  /* Apply theme-aware colors to existing components */
+  .day-card { background: var(--card-bg); border-color: var(--card-border); }
+  .course-card { background: var(--card-bg); border-color: var(--card-border); }
+  .map-wrap { background: var(--card-bg); border-color: var(--card-border); }
+  .leaflet-popup-content-wrapper { background: var(--card-bg) !important; color: var(--ink); }
+  .pin-detail { background: var(--cream-warm); }
+  [data-theme="dark"] .pin-detail .name,
+  [data-theme="dark"] .section-head h2,
+  [data-theme="dark"] .day-num,
+  [data-theme="dark"] .course-card-head h3 a,
+  [data-theme="dark"] .legend-panel h3,
+  [data-theme="dark"] .spotify-block h3 { color: var(--brass-bright); }
+
   /* ===== FOOTER ===== */
   footer {
     text-align: center;
@@ -761,6 +959,11 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
 <div class="app-root">
+  <button class="theme-toggle" id="theme-toggle" title="Toggle dark mode" aria-label="Toggle theme">
+    <svg class="moon-icon" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
+    <svg class="sun-icon" viewBox="0 0 24 24"><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"/></svg>
+  </button>
+
   <header class="hero">
     <div class="hero-layer hero-sky" data-speed="0.1"></div>
     <div class="hero-layer hero-hills-far" data-speed="0.3"></div>
@@ -802,7 +1005,22 @@
         <h2>The Schedule</h2>
         <div class="rule"></div>
       </div>
+
+      <div class="trivia-card" id="trivia-card">
+        <div class="trivia-label" id="trivia-label">A LITTLE BIT OF IRELAND</div>
+        <div class="trivia-content" id="trivia-content">Loading...</div>
+        <div class="trivia-attr" id="trivia-attr"></div>
+      </div>
+
       <div class="timeline" id="timeline"></div>
+
+      <div class="spotify-block">
+        <h3>The Trip Playlist</h3>
+        <div class="spotify-sub">FOR THE DRIVE · FOR THE PUB · FOR THE ROAD HOME</div>
+        <iframe src="https://open.spotify.com/embed/playlist/37i9dQZF1DX7K31D69s4M1?utm_source=generator&theme=0"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"></iframe>
+      </div>
     </section>
 
     <section class="section" id="section-courses">
@@ -862,11 +1080,11 @@
 const TRIP_START = new Date('2026-09-11T22:50:00-04:00');
 
 const courses = {
-  'Ring of Kerry': { lat: 51.87473, lng: -9.67211, par: 72, yards: 6820, day: 'Sun 9/13', time: '8:40 AM', town: 'Templenoe', url: 'https://ringofkerrygolf.com/', img: './ring%20of%20kerry.jpeg', cond: "Parkland-heathland hybrid overlooking Kenmare Bay with Caha Mountains backdrop. USGA spec greens considered among Ireland's finest. Designed by Eddie Hackett & Ron Kirby." },
-  'Kenmare GC': { lat: 51.8819, lng: -9.5830, par: 71, yards: 5500, day: 'Sun 9/13', time: '2:30/2:40', town: 'Kenmare', url: 'https://kenmaregolfclub.com/', img: './kenmare.jpeg', cond: "Short but charming parkland laid out within the old Kenmare Estate. Tight fairways demand accuracy over power. Lovely walk after the morning round at Ring of Kerry." },
-  'Dooks': { lat: 52.0667, lng: -9.8814, par: 71, yards: 6586, day: 'Mon 9/14', time: '8:30/8:40', town: 'Glenbeigh', url: 'https://www.dooks.com/', img: './dooks.jpeg', cond: "True links on Dingle Bay. The most natural course in the region, with gorse, pot bunkers, and holes that follow the dunes. Wind will dictate the entire round." },
-  'Waterville': { lat: 51.8283, lng: -10.1456, par: 72, yards: 7378, day: 'Tue 9/15', time: '8:10/8:20', town: 'Waterville', url: 'https://watervillegolflinks.ie/', img: './waterville.jpeg', cond: "World-top-100 links. Long, open, exposed to Atlantic wind. Payne Stewart practiced here before winning The Open. The back nine is an all-timer." },
-  'Ballybunion Cashen': { lat: 52.5086, lng: -9.6761, par: 71, yards: 6215, day: 'Wed 9/16', time: '12:56/1:18', town: 'Ballybunion', url: 'https://ballybuniongolfclub.com/', img: './Ballybunion.jpeg', cond: "Robert Trent Jones Sr.'s wilder sister course to the Old Course. Massive dunes, blind shots, punishing rough. A test of creativity and resilience." },
+  'Ring of Kerry': { lat: 51.87473, lng: -9.67211, par: 72, yards: 6820, day: 'Sun 9/13', time: '8:40 AM', town: 'Templenoe', url: 'https://ringofkerrygolf.com/', img: './ring%20of%20kerry.jpeg', cond: "Parkland-heathland hybrid overlooking Kenmare Bay with Caha Mountains backdrop. USGA spec greens considered among Ireland's finest. Designed by Eddie Hackett & Ron Kirby.", lore: "Hackett's final design before his death in 1996, completed by Ron Kirby (formerly of Jack Nicklaus Golf Design). Over 250,000 tons of sand were imported during construction. The signature 6th — 'Ladies View' — is a short par 4 from a raised tee with water right and a stream left. Considered one of the most breathtaking tee shots in Ireland.", famous: ["Eddie Hackett (designer)", "Ron Kirby (co-designer)"] },
+  'Kenmare GC': { lat: 51.8819, lng: -9.5830, par: 71, yards: 5500, day: 'Sun 9/13', time: '2:30/2:40', town: 'Kenmare', url: 'https://kenmaregolfclub.com/', img: './kenmare.jpeg', cond: "Short but charming parkland laid out within the old Kenmare Estate. Tight fairways demand accuracy over power. Lovely walk after the morning round at Ring of Kerry.", lore: "Founded in 1903, one of Kerry's oldest clubs. Set on the historic Lansdowne Estate grounds that once belonged to the Marquis of Lansdowne. Mature trees, river hazards, and views of the Caha Mountains from nearly every hole.", famous: ["Christy O'Connor Sr. (club pro, 1950s)"] },
+  'Dooks': { lat: 52.0667, lng: -9.8814, par: 71, yards: 6586, day: 'Mon 9/14', time: '8:30/8:40', town: 'Glenbeigh', url: 'https://www.dooks.com/', img: './dooks.jpeg', cond: "True links on Dingle Bay. The most natural course in the region, with gorse, pot bunkers, and holes that follow the dunes. Wind will dictate the entire round.", lore: "One of the oldest golf courses in Ireland — founded in 1889 by officers of the Royal Horse Artillery stationed in Glenbeigh. The name 'Dooks' comes from the Irish 'dumhach,' meaning sand dune. Redesigned by Martin Hawtree in 2006. The natterjack toad — Ireland's rarest amphibian — lives on the course grounds.", famous: ["Martin Hawtree (redesigned 2006)"] },
+  'Waterville': { lat: 51.8283, lng: -10.1456, par: 72, yards: 7378, day: 'Tue 9/15', time: '8:10/8:20', town: 'Waterville', url: 'https://watervillegolflinks.ie/', img: './waterville.jpeg', cond: "World-top-100 links. Long, open, exposed to Atlantic wind. Payne Stewart practiced here before winning The Open. The back nine is an all-timer.", lore: "Redesigned in 2006 by Tom Fazio. The par-3 12th, 'Mass Hole,' is named for the hollow where locals secretly held Catholic mass during penal times. Payne Stewart was made an honorary captain in 1999 — a bronze statue of him stands near the clubhouse. He tragically died months later.", famous: ["Payne Stewart (honorary captain)", "Tiger Woods", "Mark O'Meara", "Tom Watson", "Sergio García"] },
+  'Ballybunion Cashen': { lat: 52.5086, lng: -9.6761, par: 71, yards: 6215, day: 'Wed 9/16', time: '12:56/1:18', town: 'Ballybunion', url: 'https://ballybuniongolfclub.com/', img: './Ballybunion.jpeg', cond: "Robert Trent Jones Sr.'s wilder sister course to the Old Course. Massive dunes, blind shots, punishing rough. A test of creativity and resilience.", lore: "Designed by Robert Trent Jones Sr. in 1984 and opened in 1985. Jones called the site 'the finest piece of linksland in the world.' The Cashen is shorter but arguably more dramatic than the Old Course — every hole features a dune, a blind shot, or a forced carry. Tom Watson famously declared Ballybunion 'the finest seaside course I have ever seen.'", famous: ["Robert Trent Jones Sr. (designer)", "Tom Watson", "Bill Clinton (played 1998)", "Rory McIlroy"] },
 };
 
 const trip = [
@@ -1016,6 +1234,78 @@ window.addEventListener('scroll', () => {
   });
 }, { passive: true });
 
+// Theme toggle (persists in localStorage)
+const themeToggle = document.getElementById('theme-toggle');
+function applyTheme(theme) {
+  if (theme === 'dark') document.documentElement.setAttribute('data-theme', 'dark');
+  else document.documentElement.removeAttribute('data-theme');
+}
+try {
+  const saved = localStorage.getItem('ireland-theme');
+  if (saved) applyTheme(saved);
+} catch (e) {}
+themeToggle.addEventListener('click', () => {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const next = isDark ? 'light' : 'dark';
+  applyTheme(next);
+  try { localStorage.setItem('ireland-theme', next); } catch (e) {}
+});
+
+// Trivia rotator
+const trivia = [
+  { label: "IRISH PHRASE OF THE DAY", phrase: "Sláinte!", translation: "Cheers! / Good health!", attr: "The classic toast" },
+  { label: "IRISH PHRASE OF THE DAY", phrase: "Go n-éirí an bóthar leat", translation: "May the road rise to meet you", attr: "An Irish blessing" },
+  { label: "IRISH PHRASE OF THE DAY", phrase: "Pionta Guinness, le do thoil", translation: "A pint of Guinness, please", attr: "Essential vocabulary" },
+  { label: "IRISH PHRASE OF THE DAY", phrase: "Céad míle fáilte", translation: "A hundred thousand welcomes", attr: "The national greeting" },
+  { label: "IRISH PHRASE OF THE DAY", phrase: "Is maith liom é sin", translation: "I like that", attr: "For the post-round Guinness" },
+  { label: "IRISH PHRASE OF THE DAY", phrase: "Slán abhaile", translation: "Safe home", attr: "A common goodbye" },
+  { label: "IRISH PHRASE OF THE DAY", phrase: "Tá sé ag cur báistí", translation: "It's raining", attr: "You'll need this one" },
+  { label: "COURSE LORE", phrase: "\"The finest seaside course I have ever seen.\"", translation: "— Tom Watson on Ballybunion", attr: "High praise from an Open champion" },
+  { label: "COURSE LORE", phrase: "Payne Stewart was honorary captain at Waterville in 1999", translation: "He died months later in a plane crash. A bronze statue of him stands near the clubhouse.", attr: "A Waterville tradition" },
+  { label: "COURSE LORE", phrase: "Dooks was founded in 1889", translation: "By British army officers. The name comes from 'dumhach' — Irish for sand dune.", attr: "One of Ireland's oldest links" },
+  { label: "COURSE LORE", phrase: "Bill Clinton played Ballybunion in 1998", translation: "A bronze statue of him stands in the town.", attr: "Yes, there's a Clinton statue" },
+  { label: "COURSE LORE", phrase: "Eddie Hackett designed 85+ courses", translation: "Ring of Kerry was his final design, completed after his death.", attr: "Ireland's greatest golf architect" },
+  { label: "DID YOU KNOW", phrase: "Ireland has more golf courses per capita than any country except Scotland", translation: "Over 400 courses on an island the size of West Virginia.", attr: "A golfer's paradise" },
+  { label: "DID YOU KNOW", phrase: "Guinness is brewed with pale malt and roasted barley", translation: "The distinctive dark color is from the roast, not the stout itself. It's technically a ruby red.", attr: "Hold a glass up to the light" },
+  { label: "DID YOU KNOW", phrase: "Kerry is called 'The Kingdom'", translation: "The nickname dates to the 1st century — the area was considered too fierce for Roman conquest.", attr: "You're visiting royalty" },
+  { label: "DID YOU KNOW", phrase: "The Ring of Kerry is 179 km long", translation: "The full coastal drive loops around the Iveragh Peninsula in about 3-4 hours without stops.", attr: "Skellig Michael is offshore" },
+  { label: "DID YOU KNOW", phrase: "Waterville is the northernmost point of the Gulf Stream", translation: "Which is why palm trees grow on this part of the Atlantic coast.", attr: "Unexpectedly mild" },
+  { label: "DID YOU KNOW", phrase: "The Irish word for 'golf' is 'galf'", translation: "Though 'gailf' is also accepted. Both are 20th-century loanwords from English.", attr: "Just in case you needed it" },
+  { label: "PUB WISDOM", phrase: "A proper Guinness takes 119.5 seconds to pour", translation: "Two-part pour with a 90-second settle. Anything faster is a sacrilege.", attr: "Count it next time" },
+  { label: "PUB WISDOM", phrase: "'Trad' sessions are usually unannounced", translation: "Musicians drop in, pull up stools, start playing. No set list, no headliner.", attr: "Stumble in and listen" },
+  { label: "PUB WISDOM", phrase: "Order in rounds", translation: "In Ireland, you buy your round and wait your turn. Don't start buying individually.", attr: "A cultural rule" },
+  { label: "PUB WISDOM", phrase: "The 'snug' is the small private room at the front of old pubs", translation: "Originally for women and priests who didn't want to be seen drinking in public.", attr: "Look for them in old country pubs" },
+  { label: "A LITTLE POETRY", phrase: "\"Mid-term break... four feet box, a foot for every year.\"", translation: "— Seamus Heaney, Nobel laureate, born 1939 in Co. Derry", attr: "Ireland's poetic heart" },
+  { label: "A LITTLE POETRY", phrase: "\"I have spread my dreams under your feet; tread softly...\"", translation: "— W.B. Yeats, 'He Wishes for the Cloths of Heaven'", attr: "Maybe Ireland's greatest poet" },
+  { label: "A LITTLE POETRY", phrase: "\"May you live all the days of your life.\"", translation: "— Jonathan Swift", attr: "The author of Gulliver's Travels was Irish" },
+  { label: "KERRY FACTS", phrase: "Kerry is home to Ireland's tallest mountain", translation: "Carrauntoohil, 1,038 meters, in the MacGillycuddy's Reeks.", attr: "Visible from Ring of Kerry GC" },
+  { label: "KERRY FACTS", phrase: "Skellig Michael is 8 miles off the Kerry coast", translation: "A 6th-century monastery on a jagged sea pyramid. Also Luke Skywalker's island.", attr: "Accessible from Portmagee" },
+  { label: "KERRY FACTS", phrase: "Daniel O'Connell was born in Caherdaniel", translation: "The 'Liberator' who secured Catholic emancipation in 1829. His home is now a museum.", attr: "You pass it on the Ring of Kerry" },
+  { label: "LINKS GOLF 101", phrase: "A 'links' is coastal land between the sea and arable ground", translation: "The original golf courses. The word comes from Old English 'hlinc' — rising ground.", attr: "Not every seaside course is a links" },
+  { label: "LINKS GOLF 101", phrase: "Keep it low into the wind", translation: "Punch shots and bump-and-runs win on links. High shots get eaten alive.", attr: "Leave the high wedge in the bag" },
+];
+
+let triviaIndex = Math.floor(Math.random() * trivia.length);
+function renderTrivia() {
+  const t = trivia[triviaIndex];
+  const contentEl = document.getElementById('trivia-content');
+  const labelEl = document.getElementById('trivia-label');
+  const attrEl = document.getElementById('trivia-attr');
+  // Re-trigger animation
+  contentEl.style.animation = 'none';
+  contentEl.offsetHeight; // force reflow
+  contentEl.style.animation = '';
+  labelEl.textContent = t.label;
+  contentEl.innerHTML = `
+    <span class="phrase">${t.phrase}</span>
+    <span class="translation">${t.translation}</span>
+  `;
+  attrEl.textContent = t.attr || '';
+  triviaIndex = (triviaIndex + 1) % trivia.length;
+}
+renderTrivia();
+setInterval(renderTrivia, 7000); // rotate every 7 seconds
+
 // Weather
 const weatherCache = {};
 async function fetchWeather(lat, lng, dateISO) {
@@ -1158,6 +1448,20 @@ Object.entries(courses).forEach(([name, c]) => {
         <span class="wx-big">--°</span>
         <div class="wx-details">Loading forecast…</div>
       </div>
+      ${c.lore ? `
+        <div class="course-lore">
+          <div class="lore-label">THE LORE</div>
+          <p>${c.lore}</p>
+        </div>
+      ` : ''}
+      ${c.famous && c.famous.length ? `
+        <div class="course-famous">
+          <div class="lore-label">NOTABLE NAMES</div>
+          <div class="famous-tags">
+            ${c.famous.map(f => `<span class="famous-tag">${f}</span>`).join('')}
+          </div>
+        </div>
+      ` : ''}
       <div class="course-actions">
         <a href="${dirUrl}" target="_blank" rel="noopener" class="course-btn">🗺 Directions from Airbnb</a>
         <a href="${c.url}" target="_blank" rel="noopener" class="course-btn brass">Course Website ↗</a>
@@ -1218,12 +1522,36 @@ function initLeafletMap() {
 
   pins.forEach(p => {
     const marker = L.marker([p.lat, p.lng], { icon: makePinIcon(p.type) });
-    marker.bindPopup(`<div class="type">${p.type.toUpperCase()}</div><strong>${p.name}</strong><div>${p.desc}</div>`);
+
+    // Figure out the best link for this pin
+    let linkUrl;
+    if (p.type === 'golf') {
+      // Match to course data if possible for website link
+      const matchedCourse = Object.entries(courses).find(([name]) => name === p.name);
+      linkUrl = matchedCourse ? matchedCourse[1].url : gmapsSearch(p.name, p.lat, p.lng);
+    } else if (p.id === 'bnb') {
+      linkUrl = 'https://www.airbnb.com/rooms/1044731059343257187?source_impression_id=p3_1776513327_P3zWo6C2Zk2Fql-d';
+    } else {
+      // Pubs, meals, airport, etc. → Google Maps search
+      linkUrl = gmapsSearch(p.name, p.lat, p.lng);
+    }
+
+    const dirUrl = gmapsDirections(AIRBNB.lat, AIRBNB.lng, p.lat, p.lng, p.name);
+    const isAirbnb = p.id === 'bnb';
+
+    marker.bindPopup(`
+      <div class="type">${p.type.toUpperCase()}</div>
+      <strong><a href="${linkUrl}" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">${p.name} ↗</a></strong>
+      <div>${p.desc}</div>
+      ${!isAirbnb ? `<div style="margin-top:0.5rem;"><a href="${dirUrl}" target="_blank" rel="noopener" style="color:var(--brass);font-family:'Cormorant SC',serif;font-size:0.7rem;letter-spacing:0.15em;text-decoration:none;">🗺 DIRECTIONS FROM AIRBNB ↗</a></div>` : ''}
+    `);
+
     marker.on('click', () => {
       document.getElementById('pin-detail').innerHTML = `
         <span class="type-tag">${p.type.toUpperCase()}</span>
-        <span class="name">${p.name}</span>
+        <span class="name"><a href="${linkUrl}" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--brass);">${p.name} ↗</a></span>
         <p>${p.desc}</p>
+        ${!isAirbnb ? `<a href="${dirUrl}" target="_blank" rel="noopener" class="course-btn" style="margin-top:0.75rem;display:inline-block;">🗺 Directions from Airbnb</a>` : ''}
       `;
     });
     pinLayers[p.type].addLayer(marker);
