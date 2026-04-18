@@ -1136,7 +1136,7 @@ const icons = {
   pint: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2v4h2V4h6v2h2V2H7zm-1 6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V8H6zm2 2h8v10H8V10z"/></svg>'
 };
 
-const AIRBNB = { lat: 51.8664, lng: -9.7183 };
+const AIRBNB = { lat: 51.8664, lng: -9.7183, eircode: 'V93 F9V3', address: 'V93 F9V3, Greenane, Co. Kerry, Ireland' };
 
 const pins = [
   { id: 'snn', type: 'travel', name: 'Shannon Airport', lat: 52.7019, lng: -8.9248, desc: 'Arrival Sat 9/12 10:15 AM · Departure Fri 9/18' },
@@ -1145,7 +1145,7 @@ const pins = [
   { id: 'water', type: 'golf', name: 'Waterville', lat: 51.8283, lng: -10.1456, desc: 'Tue 9/15 · 8:10/8:20 · $400/pp' },
   { id: 'ring', type: 'golf', name: 'Ring of Kerry GC', lat: 51.8747, lng: -9.6721, desc: 'Sun 9/13 · 8:30/8:40 · $212/pp' },
   { id: 'kenmare-gc', type: 'golf', name: 'Kenmare GC', lat: 51.8819, lng: -9.5830, desc: 'Sun 9/13 · 2:30/2:40 · $95/pp' },
-  { id: 'bnb', type: 'stay', name: 'Airbnb — Templenoe', lat: 51.8664, lng: -9.7183, desc: 'Co. Kerry V93 F9V3' },
+  { id: 'bnb', type: 'stay', name: 'Airbnb — Templenoe', lat: 51.8664, lng: -9.7183, desc: 'V93 F9V3, Greenane, Co. Kerry' },
   { id: 'reidys', type: 'pub', name: "JM Reidy's", lat: 52.0599, lng: -9.5044, desc: 'Killarney · Pub crawl · Classic spot' },
   { id: 'courtneys', type: 'pub', name: "Courtney's", lat: 52.0582, lng: -9.5051, desc: 'Killarney · Trad music' },
   { id: 'murphys', type: 'pub', name: "Murphy's", lat: 52.0610, lng: -9.5049, desc: 'Killarney · Pub crawl' },
@@ -1180,8 +1180,9 @@ const drivesFromAirbnb = {
 function gmapsSearch(name, lat, lng) {
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(name)}&center=${lat},${lng}`;
 }
-function gmapsDirections(fromLat, fromLng, toLat, toLng, destName) {
-  return `https://www.google.com/maps/dir/?api=1&origin=${fromLat},${fromLng}&destination=${toLat},${toLng}&travelmode=driving&destination_place_id=${encodeURIComponent(destName || '')}`;
+function gmapsDirections(originText, toLat, toLng, destName) {
+  // originText can be an Eircode or address string; Google Maps will geocode it
+  return `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(originText)}&destination=${toLat},${toLng}&travelmode=driving&destination_place_id=${encodeURIComponent(destName || '')}`;
 }
 function findPin(id) { return pins.find(p => p.id === id); }
 
@@ -1377,7 +1378,7 @@ trip.forEach(d => {
     const rem = mins % 60;
     const pretty = hrs > 0 ? `${hrs}h ${rem}m` : `${mins} min`;
     const c = courses[d.courseId];
-    const dirUrl = gmapsDirections(AIRBNB.lat, AIRBNB.lng, c.lat, c.lng, d.courseId);
+    const dirUrl = gmapsDirections(AIRBNB.eircode, c.lat, c.lng, d.courseId);
     routeHtml = `<a href="${dirUrl}" target="_blank" rel="noopener" class="route-inline route-link">🚗 ${pretty} from Airbnb ↗</a>`;
   }
 
@@ -1427,7 +1428,7 @@ const courseGrid = document.getElementById('course-grid');
 Object.entries(courses).forEach(([name, c]) => {
   const card = document.createElement('div');
   card.className = 'course-card';
-  const dirUrl = gmapsDirections(AIRBNB.lat, AIRBNB.lng, c.lat, c.lng, name);
+  const dirUrl = gmapsDirections(AIRBNB.eircode, c.lat, c.lng, name);
   card.innerHTML = `
     <a href="${c.url}" target="_blank" rel="noopener" class="course-img-link" style="display:block;position:relative;">
       <img src="${c.img}" alt="${name}" class="course-img" loading="lazy"/>
@@ -1536,7 +1537,7 @@ function initLeafletMap() {
       linkUrl = gmapsSearch(p.name, p.lat, p.lng);
     }
 
-    const dirUrl = gmapsDirections(AIRBNB.lat, AIRBNB.lng, p.lat, p.lng, p.name);
+    const dirUrl = gmapsDirections(AIRBNB.eircode, p.lat, p.lng, p.name);
     const isAirbnb = p.id === 'bnb';
 
     marker.bindPopup(`
