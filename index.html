@@ -17,11 +17,11 @@
     --shadow-med: 0 8px 24px rgba(21, 39, 32, 0.15);
     --shadow-deep: 0 20px 60px rgba(21, 39, 32, 0.25);
   }
-
+ 
   @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&family=Cormorant+SC:wght@400;500;600;700&display=swap');
-
+ 
   * { box-sizing: border-box; margin: 0; padding: 0; }
-
+ 
   body, .app-root {
     font-family: 'Libre Caslon Text', Georgia, serif;
     color: var(--ink);
@@ -29,7 +29,7 @@
     line-height: 1.6;
     min-height: 100vh;
   }
-
+ 
   .app-root {
     background:
       radial-gradient(ellipse at top, rgba(176, 138, 62, 0.06), transparent 50%),
@@ -37,7 +37,7 @@
       var(--parchment);
     position: relative;
   }
-
+ 
   .app-root::before {
     content: '';
     position: fixed;
@@ -47,7 +47,7 @@
     opacity: 0.6;
     z-index: 0;
   }
-
+ 
   .container {
     position: relative;
     z-index: 1;
@@ -55,7 +55,7 @@
     margin: 0 auto;
     padding: 0 2rem;
   }
-
+ 
   /* ===== PARALLAX HERO ===== */
   header.hero {
     position: relative;
@@ -65,7 +65,7 @@
     border-bottom: 4px double var(--brass);
     isolation: isolate;
   }
-
+ 
   .hero-layer {
     position: absolute;
     inset: 0;
@@ -73,7 +73,7 @@
     background-position: center;
     will-change: transform;
   }
-
+ 
   .hero-sky {
     background: linear-gradient(180deg, #0d1a13 0%, #1f3a2e 40%, #3a5a47 80%, #5a7a5f 100%);
     z-index: 1;
@@ -105,14 +105,14 @@
                 radial-gradient(ellipse at 70% 85%, rgba(244, 236, 216, 0.05) 0%, transparent 40%);
     pointer-events: none;
   }
-
+ 
   .hero-inner {
     position: relative;
     z-index: 10;
     text-align: center;
     padding: 4rem 0 5rem;
   }
-
+ 
   .crest {
     display: inline-flex;
     align-items: center;
@@ -134,7 +134,7 @@
     border-radius: 50%;
   }
   .crest svg { width: 44px; height: 44px; fill: var(--brass-bright); position: relative; z-index: 1; }
-
+ 
   .eyebrow {
     font-family: 'Cormorant SC', serif;
     font-size: 0.9rem;
@@ -144,7 +144,7 @@
     text-transform: uppercase;
     text-shadow: 0 2px 8px rgba(0,0,0,0.5);
   }
-
+ 
   h1.title {
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(3rem, 7vw, 5.5rem);
@@ -156,7 +156,7 @@
     text-shadow: 0 4px 20px rgba(0,0,0,0.6);
   }
   h1.title .amp { color: var(--brass-bright); font-style: normal; padding: 0 0.2em; }
-
+ 
   .subtitle {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.3rem;
@@ -165,7 +165,7 @@
     opacity: 0.9;
     text-shadow: 0 2px 10px rgba(0,0,0,0.5);
   }
-
+ 
   .dateline {
     margin-top: 2rem;
     display: inline-flex;
@@ -181,7 +181,7 @@
     backdrop-filter: blur(6px);
   }
   .dateline .dot { color: var(--brass-bright); }
-
+ 
   /* ===== COUNTDOWN ===== */
   .countdown-bar {
     position: relative;
@@ -226,7 +226,7 @@
     opacity: 0.85;
     font-size: 1rem;
   }
-
+ 
   /* ===== AUDIO TOGGLE ===== */
   .audio-toggle {
     position: fixed;
@@ -269,7 +269,7 @@
     0%, 100% { transform: scaleY(0.4); }
     50% { transform: scaleY(1); }
   }
-
+ 
   /* ===== TAB NAV ===== */
   .tabs {
     display: flex;
@@ -304,12 +304,12 @@
     height: 3px;
     background: var(--brass);
   }
-
+ 
   /* ===== SECTIONS ===== */
   .section { display: none; padding: 3.5rem 0 5rem; }
   .section.active { display: block; animation: fade 0.4s ease; }
   @keyframes fade { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: none; } }
-
+ 
   .section-head {
     text-align: center;
     margin-bottom: 3rem;
@@ -337,14 +337,14 @@
     color: var(--brass);
   }
   .rule::before, .rule::after { content: ''; height: 1px; width: 60px; background: var(--brass); }
-
+ 
   /* ===== TIMELINE ===== */
   .timeline {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 1.5rem;
   }
-
+ 
   .day-card {
     background: white;
     border: 1px solid rgba(31, 58, 46, 0.1);
@@ -370,7 +370,7 @@
   .day-card.travel::before { background: var(--red-seal); }
   .day-card.golf::before { background: var(--forest); }
   .day-card.rest::before { background: var(--brass); }
-
+ 
   .day-header {
     display: flex;
     justify-content: space-between;
@@ -399,7 +399,7 @@
     font-size: 1.1rem;
     color: var(--forest);
   }
-
+ 
   .day-item {
     display: flex;
     gap: 0.75rem;
@@ -429,7 +429,7 @@
     font-style: italic;
     margin-top: 0.1rem;
   }
-
+ 
   .day-extras {
     margin-top: 1rem;
     padding-top: 0.75rem;
@@ -463,7 +463,7 @@
     border: 1px solid var(--brass);
     border-radius: 2px;
   }
-
+ 
   /* ===== MAP ===== */
   .map-wrap {
     display: grid;
@@ -475,7 +475,7 @@
     border: 1px solid rgba(31, 58, 46, 0.1);
   }
   @media (max-width: 860px) { .map-wrap { grid-template-columns: 1fr; } }
-
+ 
   #leaflet-map {
     height: 600px;
     width: 100%;
@@ -483,7 +483,7 @@
     background: var(--cream-warm);
     z-index: 1;
   }
-
+ 
   .legend-panel h3 {
     font-family: 'Cormorant Garamond', serif;
     font-style: italic;
@@ -519,7 +519,7 @@
     color: var(--cream);
     border-color: var(--forest);
   }
-
+ 
   .pin-detail {
     background: var(--parchment);
     padding: 1rem;
@@ -542,7 +542,7 @@
     color: var(--brass);
     margin-bottom: 0.5rem;
   }
-
+ 
   /* ===== COURSES PAGE ===== */
   .course-grid {
     display: grid;
@@ -614,7 +614,7 @@
     transition: color 0.2s;
   }
   .course-card-head h3 a:hover { color: var(--brass-bright); }
-
+ 
   .course-actions {
     display: flex;
     gap: 0.5rem;
@@ -642,7 +642,7 @@
   .course-btn:hover { background: var(--forest); color: var(--cream); }
   .course-btn.brass { border-color: var(--brass); color: var(--brass); }
   .course-btn.brass:hover { background: var(--brass); color: var(--forest-deep); }
-
+ 
   /* Itinerary item links */
   .item-link {
     color: var(--forest-deep);
@@ -651,7 +651,7 @@
     transition: all 0.2s;
   }
   .item-link:hover { color: var(--brass); border-bottom-color: var(--forest); }
-
+ 
   .route-link {
     text-decoration: none;
     cursor: pointer;
@@ -707,7 +707,7 @@
     color: var(--forest);
   }
   .course-wx .wx-details { color: var(--ink-soft); }
-
+ 
   /* ===== FOOTER ===== */
   footer {
     text-align: center;
@@ -719,7 +719,7 @@
     margin-top: 3rem;
   }
   footer .sprig { color: var(--brass); font-size: 1.5rem; margin-bottom: 0.5rem; }
-
+ 
   @media (max-width: 640px) {
     .container { padding: 0 1rem; }
     .tab { padding: 1rem 1.25rem; font-size: 0.75rem; letter-spacing: 0.15em; }
@@ -727,7 +727,7 @@
     .count-block { min-width: 60px; padding: 0.5rem 0.75rem; }
     .count-num { font-size: 1.6rem; }
   }
-
+ 
   .leaflet-popup-content-wrapper {
     background: var(--parchment) !important;
     border-left: 3px solid var(--brass) !important;
@@ -757,9 +757,9 @@
   .leaflet-popup-tip { background: var(--parchment) !important; }
   .custom-map-pin { background: transparent; border: none; }
 </style>
-
+ 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-
+ 
 <div class="app-root">
   <header class="hero">
     <div class="hero-layer hero-sky" data-speed="0.1"></div>
@@ -767,7 +767,7 @@
     <div class="hero-layer hero-hills-mid" data-speed="0.5"></div>
     <div class="hero-layer hero-fore" data-speed="0.8"></div>
     <div class="hero-layer hero-mist" data-speed="0.2"></div>
-
+ 
     <div class="container hero-inner">
       <div class="crest">
         <svg viewBox="0 0 24 24"><path d="M12 2L10 7L5 7L9 10L7 15L12 12L17 15L15 10L19 7L14 7Z"/><circle cx="12" cy="19" r="2"/></svg>
@@ -778,7 +778,7 @@
       <div class="dateline">
         <span>Sept 11</span><span class="dot">◆</span><span>Sept 18, 2026</span>
       </div>
-
+ 
       <div class="countdown-bar" id="countdown-bar">
         <div class="count-block"><span class="count-num" id="cd-days">--</span><span class="count-label">Days</span></div>
         <div class="count-block"><span class="count-num" id="cd-hours">--</span><span class="count-label">Hours</span></div>
@@ -788,14 +788,14 @@
       </div>
     </div>
   </header>
-
+ 
   <div class="container">
     <nav class="tabs" id="tabs">
       <button class="tab active" data-tab="itinerary">Itinerary</button>
       <button class="tab" data-tab="courses">Courses</button>
       <button class="tab" data-tab="map">The Map</button>
     </nav>
-
+ 
     <section class="section active" id="section-itinerary">
       <div class="section-head">
         <div class="kicker">Day by Day</div>
@@ -804,7 +804,7 @@
       </div>
       <div class="timeline" id="timeline"></div>
     </section>
-
+ 
     <section class="section" id="section-courses">
       <div class="section-head">
         <div class="kicker">The Battlegrounds</div>
@@ -813,7 +813,7 @@
       </div>
       <div class="course-grid" id="course-grid"></div>
     </section>
-
+ 
     <section class="section" id="section-map">
       <div class="section-head">
         <div class="kicker">Cartography</div>
@@ -850,39 +850,39 @@
       </div>
     </section>
   </div>
-
+ 
   <footer>
     <div class="sprig">❦</div>
     <div>Sláinte — and may the wind be at your back.</div>
   </footer>
 </div>
-
+ 
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 const TRIP_START = new Date('2026-09-11T22:50:00-04:00');
-
+ 
 const courses = {
-  'Ring of Kerry': { lat: 51.87473, lng: -9.67211, par: 72, yards: 6820, day: 'Sun 9/13', time: '8:30/8:40', town: 'Templenoe', url: 'https://ringofkerrygolf.com/', img: 'https://images.unsplash.com/photo-1587174486073-ae5e5cff23aa?w=800&q=75', cond: "Parkland-heathland hybrid overlooking Kenmare Bay with Caha Mountains backdrop. USGA spec greens considered among Ireland's finest. Designed by Eddie Hackett & Ron Kirby." },
-  'Kenmare GC': { lat: 51.8819, lng: -9.5830, par: 71, yards: 5500, day: 'Sun 9/13', time: '2:30/2:40', town: 'Kenmare', url: 'https://kenmaregolfclub.com/', img: 'https://images.unsplash.com/photo-1535132011086-b8818f016104?w=800&q=75', cond: "Short but charming parkland laid out within the old Kenmare Estate. Tight fairways demand accuracy over power. Lovely walk after the morning round at Ring of Kerry." },
-  'Dooks': { lat: 52.0667, lng: -9.8814, par: 71, yards: 6586, day: 'Mon 9/14', time: '8:30/8:40', town: 'Glenbeigh', url: 'https://www.dooks.com/', img: 'https://images.unsplash.com/photo-1592919505780-303950717480?w=800&q=75', cond: "True links on Dingle Bay. The most natural course in the region, with gorse, pot bunkers, and holes that follow the dunes. Wind will dictate the entire round." },
-  'Waterville': { lat: 51.8283, lng: -10.1456, par: 72, yards: 7378, day: 'Tue 9/15', time: '8:10/8:20', town: 'Waterville', url: 'https://watervillegolflinks.ie/', img: 'https://images.unsplash.com/photo-1500932334442-8761ee4810a7?w=800&q=75', cond: "World-top-100 links. Long, open, exposed to Atlantic wind. Payne Stewart practiced here before winning The Open. The back nine is an all-timer." },
-  'Ballybunion Cashen': { lat: 52.5086, lng: -9.6761, par: 71, yards: 6215, day: 'Wed 9/16', time: '12:56/1:18', town: 'Ballybunion', url: 'https://ballybuniongolfclub.com/', img: 'https://images.unsplash.com/photo-1587381420270-3e1a5b9e6904?w=800&q=75', cond: "Robert Trent Jones Sr.'s wilder sister course to the Old Course. Massive dunes, blind shots, punishing rough. A test of creativity and resilience." },
+  'Ring of Kerry': { lat: 51.87473, lng: -9.67211, par: 72, yards: 6820, day: 'Sun 9/13', time: '8:40 AM', town: 'Templenoe', url: 'https://ringofkerrygolf.com/', img: 'https://www.hiddenlinksgolf.com/wp-content/uploads/2019/05/Ring-of-Kerry-Golf-and-Country-Club-Ireland.jpg', cond: "Parkland-heathland hybrid overlooking Kenmare Bay with Caha Mountains backdrop. USGA spec greens considered among Ireland's finest. Designed by Eddie Hackett & Ron Kirby." },
+  'Kenmare GC': { lat: 51.8819, lng: -9.5830, par: 71, yards: 5500, day: 'Sun 9/13', time: '2:30/2:40', town: 'Kenmare', url: 'https://kenmaregolfclub.com/', img: 'https://kenmaregolfclub.com/wp-content/uploads/2019/02/cropped-Kenmare-Golf-Club-Header.jpg', cond: "Short but charming parkland laid out within the old Kenmare Estate. Tight fairways demand accuracy over power. Lovely walk after the morning round at Ring of Kerry." },
+  'Dooks': { lat: 52.0667, lng: -9.8814, par: 71, yards: 6586, day: 'Mon 9/14', time: '8:30/8:40', town: 'Glenbeigh', url: 'https://www.dooks.com/', img: 'https://www.dooks.com/wp-content/uploads/2021/05/dooks-hero-1.jpg', cond: "True links on Dingle Bay. The most natural course in the region, with gorse, pot bunkers, and holes that follow the dunes. Wind will dictate the entire round." },
+  'Waterville': { lat: 51.8283, lng: -10.1456, par: 72, yards: 7378, day: 'Tue 9/15', time: '8:10/8:20', town: 'Waterville', url: 'https://watervillegolflinks.ie/', img: 'https://watervillegolflinks.ie/wp-content/uploads/2020/05/waterville-golf-links-hero.jpg', cond: "World-top-100 links. Long, open, exposed to Atlantic wind. Payne Stewart practiced here before winning The Open. The back nine is an all-timer." },
+  'Ballybunion Cashen': { lat: 52.5086, lng: -9.6761, par: 71, yards: 6215, day: 'Wed 9/16', time: '12:56/1:18', town: 'Ballybunion', url: 'https://ballybuniongolfclub.com/', img: 'https://www.hiddenlinksgolf.com/wp-content/uploads/2019/05/Ballybunion-Old-Course-Ireland.jpg', cond: "Robert Trent Jones Sr.'s wilder sister course to the Old Course. Massive dunes, blind shots, punishing rough. A test of creativity and resilience." },
 };
-
+ 
 const trip = [
   { day: 1, date: 'Sept 11', weekday: 'Friday', type: 'travel', dateISO: '2026-09-11',
     items: [{ time: '10:50 PM', icon: 'plane', label: 'UA 270 · EWR → SNN', note: 'Redeye · overnight flight' }] },
   { day: 2, date: 'Sept 12', weekday: 'Saturday', type: 'rest', dateISO: '2026-09-12', weatherCoords: [51.8664, -9.7183],
     items: [
       { time: '10:15 AM', icon: 'plane', label: 'Arrive Shannon (SNN)' },
-      { time: '10:30 AM', icon: 'car', label: 'Driver pickup · Declan Finnegan' },
+      { time: '10:30 AM', icon: 'car', label: 'Driver pickup · Declan Finnegan', note: 'Kenmare Coach & Cab · +353 87 24 80 800', driverUrl: 'https://www.kenmarecoachandcab.com/about.html' },
       { time: '1:00 PM', icon: 'fork', label: 'Lunch in Killarney' },
-      { time: 'Evening', icon: 'home', label: 'Check in Airbnb · Templenoe', note: '50 min drive' },
+      { time: 'Evening', icon: 'home', label: 'Check in Airbnb · Templenoe', note: '50 min drive', airbnbUrl: 'https://www.airbnb.com/rooms/1044731059343257187?source_impression_id=p3_1776513327_P3zWo6C2Zk2Fql-d' },
       { time: 'Night', icon: 'pint', label: "Blind Piper", note: 'Caherdaniel · Trad pub', pinId: 'blindpiper' }
     ] },
   { day: 3, date: 'Sept 13', weekday: 'Sunday', type: 'golf', dateISO: '2026-09-13', courseId: 'Ring of Kerry',
     items: [
-      { time: '8:30/8:40', icon: 'golf', label: 'Ring of Kerry GC', note: 'Two threesomes · 5 min drive', courseLink: 'Ring of Kerry' },
+      { time: '8:40 AM', icon: 'golf', label: 'Ring of Kerry GC', note: '5 min drive', courseLink: 'Ring of Kerry' },
       { time: '2:30/2:40', icon: 'golf', label: 'Kenmare GC', note: '10 min drive', courseLink: 'Kenmare GC' },
       { time: 'Night', icon: 'pint', label: "D. O'Shea's", note: 'Sneem · Traditional bar', pinId: 'doshea' }
     ] },
@@ -908,7 +908,7 @@ const trip = [
   { day: 8, date: 'Sept 18', weekday: 'Friday', type: 'travel', dateISO: '2026-09-18',
     items: [{ time: 'Day', icon: 'plane', label: 'Fly home' }] }
 ];
-
+ 
 const icons = {
   plane: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 16v-2l-8-5V3.5a1.5 1.5 0 0 0-3 0V9l-8 5v2l8-2.5V19l-2 1.5V22l3.5-1 3.5 1v-1.5L13 19v-5.5l8 2.5z"/></svg>',
   car: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>',
@@ -917,9 +917,9 @@ const icons = {
   golf: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2v16m0 0c-3 0-5 1-5 2s2 2 5 2 5-1 5-2-2-2-5-2z" stroke="currentColor" stroke-width="2" fill="none"/><path d="M12 3l7 3-7 3" fill="currentColor"/></svg>',
   pint: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M7 2v4h2V4h6v2h2V2H7zm-1 6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V8H6zm2 2h8v10H8V10z"/></svg>'
 };
-
+ 
 const AIRBNB = { lat: 51.8664, lng: -9.7183 };
-
+ 
 const pins = [
   { id: 'snn', type: 'travel', name: 'Shannon Airport', lat: 52.7019, lng: -8.9248, desc: 'Arrival Sat 9/12 10:15 AM · Departure Fri 9/18' },
   { id: 'bally', type: 'golf', name: 'Ballybunion Cashen', lat: 52.5086, lng: -9.6761, desc: 'Wed 9/16 · 12:56/1:18 · $177/pp' },
@@ -953,11 +953,11 @@ const pins = [
   { id: 'rosspoint', type: 'meal', name: 'Rosspoint', lat: 52.0614, lng: -9.9497, desc: 'Glenbeigh · Restaurant' },
   { id: 'ocarroll', type: 'meal', name: "O'Carroll's Cove", lat: 51.7700, lng: -10.0322, desc: 'Castlecove · Beach bar & restaurant' },
 ];
-
+ 
 const drivesFromAirbnb = {
   'Ring of Kerry': 8, 'Kenmare GC': 12, 'Dooks': 65, 'Waterville': 55, 'Ballybunion Cashen': 115,
 };
-
+ 
 // Google Maps helpers
 function gmapsSearch(name, lat, lng) {
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(name)}&center=${lat},${lng}`;
@@ -966,7 +966,7 @@ function gmapsDirections(fromLat, fromLng, toLat, toLng, destName) {
   return `https://www.google.com/maps/dir/?api=1&origin=${fromLat},${fromLng}&destination=${toLat},${toLng}&travelmode=driving&destination_place_id=${encodeURIComponent(destName || '')}`;
 }
 function findPin(id) { return pins.find(p => p.id === id); }
-
+ 
 // Tabs
 document.querySelectorAll('.tab').forEach(t => {
   t.addEventListener('click', () => {
@@ -980,7 +980,7 @@ document.querySelectorAll('.tab').forEach(t => {
     }
   });
 });
-
+ 
 // Countdown
 function updateCountdown() {
   const now = new Date();
@@ -1005,7 +1005,7 @@ function updateCountdown() {
 }
 updateCountdown();
 setInterval(updateCountdown, 1000);
-
+ 
 // Parallax
 window.addEventListener('scroll', () => {
   const scrolled = window.pageYOffset;
@@ -1015,7 +1015,7 @@ window.addEventListener('scroll', () => {
     layer.style.transform = `translateY(${scrolled * speed}px)`;
   });
 }, { passive: true });
-
+ 
 // Weather
 const weatherCache = {};
 async function fetchWeather(lat, lng, dateISO) {
@@ -1048,7 +1048,7 @@ function weatherIcon(code) {
   return '⛅';
 }
 function celsiusToF(c) { return Math.round(c * 9/5 + 32); }
-
+ 
 // Itinerary
 const tl = document.getElementById('timeline');
 trip.forEach(d => {
@@ -1063,6 +1063,10 @@ trip.forEach(d => {
     } else if (i.pinId) {
       const p = findPin(i.pinId);
       if (p) labelHtml = `<a href="${gmapsSearch(p.name, p.lat, p.lng)}" target="_blank" rel="noopener" class="item-link">${i.label} ↗</a>`;
+    } else if (i.airbnbUrl) {
+      labelHtml = `<a href="${i.airbnbUrl}" target="_blank" rel="noopener" class="item-link">${i.label} ↗</a>`;
+    } else if (i.driverUrl) {
+      labelHtml = `<a href="${i.driverUrl}" target="_blank" rel="noopener" class="item-link">${i.label} ↗</a>`;
     }
     return `
       <div class="day-item">
@@ -1075,7 +1079,7 @@ trip.forEach(d => {
       </div>
     `;
   }).join('');
-
+ 
   let routeHtml = '';
   if (d.courseId && drivesFromAirbnb[d.courseId] && courses[d.courseId]) {
     const mins = drivesFromAirbnb[d.courseId];
@@ -1086,7 +1090,7 @@ trip.forEach(d => {
     const dirUrl = gmapsDirections(AIRBNB.lat, AIRBNB.lng, c.lat, c.lng, d.courseId);
     routeHtml = `<a href="${dirUrl}" target="_blank" rel="noopener" class="route-inline route-link">🚗 ${pretty} from Airbnb ↗</a>`;
   }
-
+ 
   card.innerHTML = `
     <div class="day-header">
       <div class="day-num">${d.day}</div>
@@ -1106,7 +1110,7 @@ trip.forEach(d => {
     </div>
   `;
   tl.appendChild(card);
-
+ 
   const coords = d.courseId ? [courses[d.courseId].lat, courses[d.courseId].lng] : d.weatherCoords;
   if (coords) {
     fetchWeather(coords[0], coords[1], d.dateISO).then(wx => {
@@ -1127,7 +1131,7 @@ trip.forEach(d => {
     if (slot) slot.innerHTML = '';
   }
 });
-
+ 
 // Courses
 const courseGrid = document.getElementById('course-grid');
 Object.entries(courses).forEach(([name, c]) => {
@@ -1161,7 +1165,7 @@ Object.entries(courses).forEach(([name, c]) => {
     </div>
   `;
   courseGrid.appendChild(card);
-
+ 
   const tripDay = trip.find(t => t.courseId === name);
   if (tripDay) {
     fetchWeather(c.lat, c.lng, tripDay.dateISO).then(wx => {
@@ -1183,12 +1187,12 @@ Object.entries(courses).forEach(([name, c]) => {
     card.querySelector('[data-course-wx]').innerHTML = '<div class="wx-details" style="font-style:italic;">—</div>';
   }
 });
-
+ 
 // Map
 let leafletMap = null;
 const pinLayers = { golf: L.layerGroup(), stay: L.layerGroup(), meal: L.layerGroup(), pub: L.layerGroup(), travel: L.layerGroup() };
 let routeLayer = null;
-
+ 
 const pinStyles = {
   golf: { color: '#1f3a2e', label: '⛳' },
   stay: { color: '#b08a3e', label: '🏠' },
@@ -1196,7 +1200,7 @@ const pinStyles = {
   pub: { color: '#d4a94a', label: '🍺' },
   travel: { color: '#3a5a47', label: '✈' },
 };
-
+ 
 function makePinIcon(type) {
   const style = pinStyles[type] || pinStyles.golf;
   return L.divIcon({
@@ -1205,13 +1209,13 @@ function makePinIcon(type) {
     iconSize: [28, 28], iconAnchor: [14, 28], popupAnchor: [0, -28]
   });
 }
-
+ 
 function initLeafletMap() {
   leafletMap = L.map('leaflet-map', { scrollWheelZoom: true }).setView([52.1, -9.7], 9);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '© OpenStreetMap', maxZoom: 18
   }).addTo(leafletMap);
-
+ 
   pins.forEach(p => {
     const marker = L.marker([p.lat, p.lng], { icon: makePinIcon(p.type) });
     marker.bindPopup(`<div class="type">${p.type.toUpperCase()}</div><strong>${p.name}</strong><div>${p.desc}</div>`);
@@ -1225,7 +1229,7 @@ function initLeafletMap() {
     pinLayers[p.type].addLayer(marker);
   });
   Object.values(pinLayers).forEach(l => l.addTo(leafletMap));
-
+ 
   routeLayer = L.layerGroup().addTo(leafletMap);
   Object.entries(courses).forEach(([name, c]) => {
     const line = L.polyline([[AIRBNB.lat, AIRBNB.lng], [c.lat, c.lng]], {
@@ -1234,11 +1238,11 @@ function initLeafletMap() {
     line.bindTooltip(`${name} · ~${drivesFromAirbnb[name]} min`, { direction: 'center' });
     routeLayer.addLayer(line);
   });
-
+ 
   const bounds = L.latLngBounds(pins.map(p => [p.lat, p.lng]));
   leafletMap.fitBounds(bounds, { padding: [30, 30] });
 }
-
+ 
 document.querySelectorAll('#filter-btns .filter-btn').forEach(b => {
   b.addEventListener('click', () => {
     document.querySelectorAll('#filter-btns .filter-btn').forEach(x => x.classList.remove('active'));
@@ -1255,7 +1259,7 @@ document.querySelectorAll('#filter-btns .filter-btn').forEach(b => {
     }
   });
 });
-
+ 
 document.getElementById('routes-on').addEventListener('click', () => {
   if (leafletMap && routeLayer) leafletMap.addLayer(routeLayer);
   document.getElementById('routes-on').classList.add('active');
