@@ -1139,38 +1139,51 @@ const icons = {
 const AIRBNB = { lat: 51.8555, lng: -9.7355, eircode: 'V93 F9V3', address: 'V93 F9V3, Greenane, Co. Kerry, Ireland' };
 
 const pins = [
+  // TRAVEL
   { id: 'snn', type: 'travel', name: 'Shannon Airport', lat: 52.7019, lng: -8.9248, desc: 'Arrival Sat 9/12 10:15 AM · Departure Fri 9/18' },
-  { id: 'bally', type: 'golf', name: 'Ballybunion Cashen', lat: 52.5086, lng: -9.6761, desc: 'Wed 9/16 · 12:56/1:18 · $177/pp' },
-  { id: 'dooks', type: 'golf', name: 'Dooks', lat: 52.0667, lng: -9.8814, desc: 'Mon 9/14 · 8:30/8:40 · $300/pp' },
-  { id: 'water', type: 'golf', name: 'Waterville', lat: 51.8283, lng: -10.1456, desc: 'Tue 9/15 · 8:10/8:20 · $400/pp' },
-  { id: 'ring', type: 'golf', name: 'Ring of Kerry GC', lat: 51.8747, lng: -9.6721, desc: 'Sun 9/13 · 8:30/8:40 · $212/pp' },
-  { id: 'kenmare-gc', type: 'golf', name: 'Kenmare GC', lat: 51.8819, lng: -9.5830, desc: 'Sun 9/13 · 2:30/2:40 · $95/pp' },
-  { id: 'bnb', type: 'stay', name: 'Airbnb — Templenoe', lat: 51.8555, lng: -9.7355, desc: 'V93 F9V3, Greenane, Co. Kerry' },
-  { id: 'spillanes', type: 'pub', name: "Pat Spillane's Bar", lat: 51.8525, lng: -9.7340, desc: "Templenoe · Named for Kerry GAA legend Pat Spillane · Right on the Ring of Kerry (N70)" },
-  { id: 'reidys', type: 'pub', name: "JM Reidy's", lat: 52.0599, lng: -9.5044, desc: 'Killarney · Pub crawl · Classic spot' },
-  { id: 'courtneys', type: 'pub', name: "Courtney's", lat: 52.0582, lng: -9.5051, desc: 'Killarney · Trad music' },
-  { id: 'murphys', type: 'pub', name: "Murphy's", lat: 52.0610, lng: -9.5049, desc: 'Killarney · Pub crawl' },
-  { id: 'laurels', type: 'pub', name: "The Laurels", lat: 52.0591, lng: -9.5057, desc: 'Killarney · Traditional Irish pub' },
-  { id: 'falveys', type: 'pub', name: "Falvey's", lat: 52.0586, lng: -9.5045, desc: 'Killarney · Pub crawl' },
-  { id: 'jackcs', type: 'pub', name: "Jack C's", lat: 52.0605, lng: -9.5038, desc: 'Killarney · Pub crawl' },
-  { id: 'blindpiper', type: 'pub', name: 'Blind Piper', lat: 51.7616, lng: -10.0878, desc: 'Caherdaniel · Trad music Thursdays · Famous Ring of Kerry pub' },
-  { id: 'doshea', type: 'pub', name: "D. O'Shea's", lat: 51.8380, lng: -9.9050, desc: 'Sneem · Atmospheric traditional bar' },
-  { id: 'redfox', type: 'pub', name: 'Red Fox Inn', lat: 52.0628, lng: -9.7833, desc: 'Glenbeigh · Historic roadside pub' },
-  { id: 'mikemurts', type: 'pub', name: "Mike Murt's", lat: 52.0488, lng: -9.7188, desc: 'Killorglin · Local institution' },
-  { id: 'craineen', type: 'pub', name: "Craineen's", lat: 51.8814, lng: -9.5823, desc: 'Kenmare · Pub & music' },
-  { id: 'odonoghue', type: 'pub', name: "O'Donoghue's", lat: 51.8822, lng: -9.5810, desc: 'Kenmare · Town pub' },
-  { id: 'oconnor', type: 'pub', name: "O'Connor's", lat: 51.8289, lng: -10.1478, desc: 'Waterville · Post-round pint' },
-  { id: 'cronins', type: 'meal', name: 'Cronins', lat: 52.0594, lng: -9.5066, desc: 'Killarney · Classic dinner' },
-  { id: 'kingdom', type: 'meal', name: 'Kingdom 1795', lat: 52.0490, lng: -9.7192, desc: 'Killorglin · Modern Irish' },
-  { id: 'smugglers', type: 'meal', name: 'Smugglers Inn', lat: 51.8297, lng: -10.1488, desc: 'Waterville · Post-round dinner' },
-  { id: 'lime', type: 'meal', name: 'Lime Tree', lat: 51.8830, lng: -9.5822, desc: 'Kenmare · Refined dining' },
-  { id: 'jacks-cg', type: 'meal', name: "Jack's Coastguard", lat: 52.0994, lng: -9.8289, desc: 'Cromane · Coastal seafood' },
-  { id: 'bricin', type: 'meal', name: 'Bricín', lat: 52.0597, lng: -9.5061, desc: 'Killarney · Boxty house' },
-  { id: 'stonehouse', type: 'meal', name: 'Stone House', lat: 51.8372, lng: -9.9062, desc: 'Sneem · Restaurant & B&B' },
-  { id: 'dunloe', type: 'meal', name: 'Dunloe Hotel', lat: 52.0111, lng: -9.5794, desc: 'Killarney · Hotel restaurant' },
-  { id: 'europe', type: 'meal', name: 'Europe Hotel', lat: 52.0392, lng: -9.5514, desc: 'Killarney · Fine dining with lake views' },
-  { id: 'rosspoint', type: 'meal', name: 'Rosspoint', lat: 52.0614, lng: -9.9497, desc: 'Glenbeigh · Restaurant' },
-  { id: 'ocarroll', type: 'meal', name: "O'Carroll's Cove", lat: 51.7700, lng: -10.0322, desc: 'Castlecove · Beach bar & restaurant' },
+
+  // GOLF COURSES (verified coordinates from course sites)
+  { id: 'bally', type: 'golf', name: 'Ballybunion Cashen', lat: 52.5013, lng: -9.6725, eircode: 'V31 RX37', desc: 'Sandhill Rd, Ballybunion · Wed 9/16 · 12:56/1:18' },
+  { id: 'dooks', type: 'golf', name: 'Dooks', lat: 52.0827, lng: -9.9255, eircode: 'V93 XP03', desc: 'Knockaunroe, Glenbeigh · Mon 9/14 · 8:30/8:40' },
+  { id: 'water', type: 'golf', name: 'Waterville Golf Links', lat: 51.8391, lng: -10.1954, eircode: 'V23 W940', desc: 'Murreagh, Waterville · Tue 9/15 · 8:10/8:20' },
+  { id: 'ring', type: 'golf', name: 'Ring of Kerry GC', lat: 51.87473, lng: -9.67211, eircode: 'V93 AK85', desc: 'Greenane, Templenoe · Sun 9/13 · 8:40 AM' },
+  { id: 'kenmare-gc', type: 'golf', name: 'Kenmare GC', lat: 51.8805, lng: -9.5885, eircode: 'V93 XW8E', desc: 'Killowen Road, Kenmare · Sun 9/13 · 2:30/2:40' },
+
+  // STAY
+  { id: 'bnb', type: 'stay', name: 'Airbnb — Templenoe', lat: 51.8555, lng: -9.7355, eircode: 'V93 F9V3', desc: 'V93 F9V3, Greenane, Co. Kerry' },
+
+  // PUBS — KILLARNEY (all on or near Main/High/Plunkett/New Street, town center ~52.060, -9.506)
+  { id: 'reidys', type: 'pub', name: "JM Reidy's", lat: 52.0603, lng: -9.5065, eircode: 'V93 CC82', desc: "4/5 Main Street, Killarney · 'Sweetshop Pub' · Live music nightly" },
+  { id: 'courtneys', type: 'pub', name: "Courtney's Bar", lat: 52.0606, lng: -9.5075, desc: '24 Plunkett Street, Killarney · Trad sessions Wed/Thu/Fri · Cash only' },
+  { id: 'murphys', type: 'pub', name: "Murphy's of Killarney", lat: 52.0597, lng: -9.5059, desc: "Main Street, Killarney · Live music · Family-run since 1955" },
+  { id: 'laurels', type: 'pub', name: "The Laurels", lat: 52.0600, lng: -9.5068, eircode: 'V93 KR52', desc: "40 Main Street, Killarney · O'Leary family, 4 generations" },
+  { id: 'falveys', type: 'pub', name: "Falvey's", lat: 52.0604, lng: -9.5062, desc: "College Street, Killarney · Traditional pub" },
+  { id: 'jackcs', type: 'pub', name: "Jack C's Bar", lat: 52.0601, lng: -9.5072, desc: "Plunkett Street, Killarney · Tiny family pub since 1901" },
+
+  // PUBS — ELSEWHERE
+  { id: 'spillanes', type: 'pub', name: "Spillane's Bar", lat: 51.8525, lng: -9.7340, eircode: 'V93 F623', desc: "Greenane, Templenoe · Named for Kerry GAA legend Pat Spillane · Closest pub to the Airbnb" },
+  { id: 'blindpiper', type: 'pub', name: 'The Blind Piper', lat: 51.7616, lng: -10.0878, eircode: 'V93 DD83', desc: 'Ballycarnahan, Caherdaniel · Famous Ring of Kerry pub · Trad music Thursdays' },
+  { id: 'doshea', type: 'pub', name: "D. O'Shea's Bar", lat: 51.8373, lng: -9.9049, desc: "North Square, Sneem · Atmospheric traditional bar" },
+  { id: 'redfox', type: 'pub', name: 'The Red Fox Inn', lat: 52.0564, lng: -9.8432, desc: 'Ballincleave, Glenbeigh · On N70 between Killorglin & Glenbeigh · Famous for Irish coffee · Next to Kerry Bog Village' },
+  { id: 'mikemurts', type: 'pub', name: "Mike Murt's", lat: 52.1040, lng: -9.7848, desc: 'Killorglin · Local institution' },
+  { id: 'crowleys', type: 'pub', name: "Crowley's Bar", lat: 51.8804, lng: -9.5832, eircode: 'V93 Y152', desc: '26 Henry Street, Kenmare · Traditional pub · Best Guinness in Kenmare · Cash only' },
+  { id: 'odonoghue', type: 'pub', name: "O'Donoghue's", lat: 51.8810, lng: -9.5828, desc: 'Kenmare · Town pub' },
+  { id: 'oconnor', type: 'pub', name: "O'Connor's Traditional Pub", lat: 52.0599, lng: -9.5059, eircode: 'V93 DV26', desc: "7 High Street, Killarney · Compact, packed with character · Outdoor barrel tables" },
+
+  // MEALS — KILLARNEY
+  { id: 'cronins', type: 'meal', name: 'Cronin\'s Restaurant', lat: 52.0599, lng: -9.5055, eircode: 'V93 P039', desc: 'College Street, Killarney · Family-run since 1957 · Michelin recommended' },
+  { id: 'bricin', type: 'meal', name: 'Bricín Restaurant & Boxty House', lat: 52.0606, lng: -9.5071, eircode: 'V93 EE61', desc: '26 High Street, Killarney · Traditional Irish boxty house' },
+  { id: 'dunloe', type: 'meal', name: 'The Dunloe Hotel & Gardens', lat: 52.0265, lng: -9.6130, eircode: 'V93 E029', desc: 'Beaufort · 5-star luxury hotel · Grill Restaurant overlooking Gap of Dunloe' },
+  { id: 'europe', type: 'meal', name: 'The Europe Hotel & Resort', lat: 52.0395, lng: -9.5517, eircode: 'V93 KHN6', desc: 'Fossa, Killarney · 5-star lakeside hotel · 3 restaurants' },
+
+  // MEALS — ELSEWHERE
+  { id: 'kingdom', type: 'meal', name: 'Kingdom 1795', lat: 52.1045, lng: -9.7848, desc: 'Main Street, Castleconway, Killorglin · Modern Irish fine dining' },
+  { id: 'smugglers', type: 'meal', name: 'The Smugglers Inn', lat: 51.8290, lng: -10.1460, desc: 'Waterville · Across from Waterville Golf Links · Payne Stewart Bar · Seafood' },
+  { id: 'lime', type: 'meal', name: 'The Lime Tree Restaurant', lat: 51.8783, lng: -9.5832, eircode: 'V93 A462', desc: '3A Shelbourne Street, Kenmare · Landmark Kenmare restaurant in 1832 building' },
+  { id: 'jacks-cg', type: 'meal', name: "Jack's Coastguard", lat: 52.1061, lng: -9.8919, eircode: 'V93 Y42F', desc: 'Cromane Lower, Killorglin · Former 1866 coastguard station · Award-winning seafood · Cromane mussels' },
+  { id: 'stonehouse', type: 'meal', name: 'Stone House Restaurant & B&B', lat: 51.8370, lng: -9.9055, desc: 'Sneem · Restaurant & B&B' },
+  { id: 'rosspoint', type: 'meal', name: 'Rosspoint Restaurant', lat: 52.0528, lng: -9.9399, desc: 'Glenbeigh · Restaurant' },
+  { id: 'ocarroll', type: 'meal', name: "O'Carroll's Cove Beach Bar", lat: 51.7691, lng: -10.0030, desc: 'Castlecove, Ring of Kerry · Beach bar & restaurant' },
 ];
 
 const drivesFromAirbnb = {
@@ -1536,8 +1549,11 @@ function initLeafletMap() {
       linkUrl = matchedCourse ? matchedCourse[1].url : gmapsSearch(p.name, p.lat, p.lng);
     } else if (p.id === 'bnb') {
       linkUrl = 'https://www.airbnb.com/rooms/1044731059343257187?source_impression_id=p3_1776513327_P3zWo6C2Zk2Fql-d';
+    } else if (p.eircode) {
+      // If we have an Eircode, use it — Google resolves these precisely
+      linkUrl = `https://www.google.com/maps/search/${encodeURIComponent(p.eircode)}/@${p.lat},${p.lng},17z`;
     } else {
-      // Pubs, meals, airport, etc. → Google Maps search
+      // Pubs, meals, airport, etc. → Google Maps coordinate-pinned search
       linkUrl = gmapsSearch(p.name, p.lat, p.lng);
     }
 
