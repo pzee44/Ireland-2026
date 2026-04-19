@@ -485,38 +485,184 @@
 
   /* ===== MAP (Google My Maps embed) ===== */
   .gmap-wrap {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 2rem;
     background: var(--card-bg);
-    padding: 1.5rem;
+    padding: 1.75rem;
     box-shadow: var(--shadow-med);
     border: 1px solid var(--card-border);
+    border-top: 3px solid var(--brass);
   }
+  @media (max-width: 960px) { .gmap-wrap { grid-template-columns: 1fr; } }
+
+  /* Ornamental frame around the iframe */
+  .gmap-frame {
+    position: relative;
+    padding: 12px;
+    background: var(--forest-deep);
+    box-shadow: inset 0 0 0 1px var(--brass), var(--shadow-soft);
+  }
+  [data-theme="dark"] .gmap-frame {
+    background: #0d1512;
+  }
+  .gmap-frame-corner {
+    position: absolute;
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--brass-bright);
+    pointer-events: none;
+    z-index: 2;
+  }
+  .gmap-frame-corner.tl { top: 4px; left: 4px; border-right: none; border-bottom: none; }
+  .gmap-frame-corner.tr { top: 4px; right: 4px; border-left: none; border-bottom: none; }
+  .gmap-frame-corner.bl { bottom: 4px; left: 4px; border-right: none; border-top: none; }
+  .gmap-frame-corner.br { bottom: 4px; right: 4px; border-left: none; border-top: none; }
+
   .gmap-embed {
     width: 100%;
-    height: 640px;
-    border: 1px solid var(--divider);
+    height: 680px;
+    border: none;
     display: block;
+    background: #e8e3d0;
   }
-  .gmap-legend {
-    margin-top: 1rem;
-    padding: 1rem 1.25rem;
-    background: var(--cream-warm);
-    border-left: 3px solid var(--brass);
-    font-family: 'Libre Caslon Text', serif;
-    font-size: 0.9rem;
-    color: var(--ink-soft);
-    line-height: 1.5;
+
+  /* Side panel */
+  .gmap-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
   }
-  .gmap-legend p { margin: 0; }
-  .gmap-legend p + p { margin-top: 0.5rem; }
-  .gmap-legend strong { color: var(--forest-deep); }
-  .gmap-legend .gmap-sub {
+  .gmap-panel-head {
+    margin-bottom: 1.5rem;
+  }
+  .gmap-panel-head h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.9rem;
+    font-style: italic;
+    color: var(--forest-deep);
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    line-height: 1;
+    margin: 0;
+  }
+  [data-theme="dark"] .gmap-panel-head h3 { color: var(--brass-bright); }
+  .gmap-panel-rule {
+    width: 48px;
+    height: 2px;
+    background: var(--brass);
+    margin-top: 0.6rem;
+  }
+
+  .gmap-panel-section {
+    padding: 1rem 0;
+    border-top: 1px dashed var(--divider);
+  }
+  .gmap-panel-section:first-of-type { border-top: none; padding-top: 0; }
+
+  .gmap-section-label {
     font-family: 'Cormorant SC', serif;
-    font-size: 0.72rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.28em;
+    color: var(--brass);
+    margin-bottom: 0.7rem;
+  }
+
+  .gmap-help {
+    font-family: 'Libre Caslon Text', serif;
+    font-size: 0.82rem;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .gmap-help strong { color: var(--forest-deep); font-weight: 600; }
+  [data-theme="dark"] .gmap-help strong { color: var(--brass-bright); }
+
+  .gmap-category-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .gmap-category-list li {
+    display: grid;
+    grid-template-columns: 32px 1fr auto;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.5rem 0;
+    font-family: 'Libre Caslon Text', serif;
+    font-size: 0.88rem;
+    color: var(--ink);
+    border-bottom: 1px dotted var(--divider);
+  }
+  .gmap-category-list li:last-child { border-bottom: none; }
+  .gmap-cat-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    font-size: 14px;
+    color: white;
+    box-shadow: var(--shadow-soft);
+  }
+  .gmap-cat-icon.golf { background: var(--forest); }
+  .gmap-cat-icon.stay { background: var(--brass); }
+  .gmap-cat-icon.pub { background: var(--brass-bright); }
+  .gmap-cat-icon.meal { background: var(--red-seal); }
+  .gmap-cat-icon.travel { background: var(--moss); }
+  .gmap-cat-count {
+    font-family: 'Cormorant SC', serif;
+    font-size: 0.7rem;
     letter-spacing: 0.15em;
     color: var(--brass);
   }
-  @media (max-width: 860px) {
-    .gmap-embed { height: 480px; }
+
+  /* Base camp callout */
+  .gmap-callout {
+    margin-top: 1.5rem;
+    padding: 1.1rem 1.2rem;
+    background: linear-gradient(135deg, var(--forest) 0%, var(--forest-deep) 100%);
+    color: var(--cream);
+    border-left: 3px solid var(--brass-bright);
+    box-shadow: var(--shadow-soft);
+    position: relative;
+  }
+  [data-theme="dark"] .gmap-callout {
+    background: linear-gradient(135deg, #1a241f 0%, #0d1512 100%);
+  }
+  .gmap-callout::before {
+    content: '❦';
+    position: absolute;
+    top: 0.4rem;
+    right: 0.7rem;
+    color: var(--brass);
+    font-size: 1.1rem;
+    opacity: 0.5;
+  }
+  .gmap-callout-label {
+    font-family: 'Cormorant SC', serif;
+    font-size: 0.68rem;
+    letter-spacing: 0.28em;
+    color: var(--brass-bright);
+    margin-bottom: 0.5rem;
+  }
+  .gmap-callout-body {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.05rem;
+    line-height: 1.45;
+    font-style: italic;
+  }
+  .gmap-callout-body strong {
+    font-style: normal;
+    font-weight: 600;
+    color: var(--brass-bright);
+    letter-spacing: 0.05em;
+  }
+
+  @media (max-width: 960px) {
+    .gmap-embed { height: 500px; }
+    .gmap-panel { margin-top: 1rem; }
   }
 
   .pin-detail {
@@ -1017,17 +1163,60 @@
         <div class="rule"></div>
       </div>
       <div class="gmap-wrap">
-        <iframe
-          src="https://www.google.com/maps/d/embed?mid=191rnWNfTaevPxihlNoINlhxYr8g_18U&ehbc=2E312F"
-          class="gmap-embed"
-          loading="lazy"
-          allowfullscreen
-          referrerpolicy="no-referrer-when-downgrade"
-          title="Ireland Golf Trip Map"></iframe>
-        <div class="gmap-legend">
-          <p><strong>Filter pins by category</strong> using the menu in the top-left of the map. <strong>Click any pin</strong> for the address, phone, and a link to open in Google Maps for directions.</p>
-          <p class="gmap-sub">⛳ Golf courses · 🏠 Airbnb · 🍺 Pubs by region · 🍽 Meals by region · ✈ Travel</p>
+        <div class="gmap-frame">
+          <div class="gmap-frame-corner tl"></div>
+          <div class="gmap-frame-corner tr"></div>
+          <div class="gmap-frame-corner bl"></div>
+          <div class="gmap-frame-corner br"></div>
+          <iframe
+            src="https://www.google.com/maps/d/embed?mid=191rnWNfTaevPxihlNoINlhxYr8g_18U&ehbc=2E312F"
+            class="gmap-embed"
+            loading="lazy"
+            allowfullscreen
+            referrerpolicy="no-referrer-when-downgrade"
+            title="Ireland Golf Trip Map"></iframe>
         </div>
+        <aside class="gmap-panel">
+          <div class="gmap-panel-head">
+            <h3>The Legend</h3>
+            <div class="gmap-panel-rule"></div>
+          </div>
+
+          <div class="gmap-panel-section">
+            <div class="gmap-section-label">Pin Categories</div>
+            <ul class="gmap-category-list">
+              <li><span class="gmap-cat-icon golf">⛳</span><span>Golf Courses</span><span class="gmap-cat-count">5</span></li>
+              <li><span class="gmap-cat-icon stay">🏠</span><span>Airbnb</span><span class="gmap-cat-count">1</span></li>
+              <li><span class="gmap-cat-icon pub">🍺</span><span>Pubs</span><span class="gmap-cat-count">14</span></li>
+              <li><span class="gmap-cat-icon meal">🍽</span><span>Meals</span><span class="gmap-cat-count">11</span></li>
+              <li><span class="gmap-cat-icon travel">✈</span><span>Travel</span><span class="gmap-cat-count">1</span></li>
+            </ul>
+          </div>
+
+          <div class="gmap-panel-section">
+            <div class="gmap-section-label">How to Filter</div>
+            <p class="gmap-help">Tap the <strong>layers icon</strong> in the top-left corner of the map to toggle categories on and off. Hide the pubs to see only courses, or vice versa.</p>
+          </div>
+
+          <div class="gmap-panel-section">
+            <div class="gmap-section-label">Tap a Pin</div>
+            <p class="gmap-help">Every pin shows the address, phone, and an "Open in Google Maps" link for <strong>turn-by-turn directions</strong> from wherever you are.</p>
+          </div>
+
+          <div class="gmap-panel-section">
+            <div class="gmap-section-label">On Your Phone</div>
+            <p class="gmap-help">Open this map in the Google Maps app by tapping the <strong>expand icon</strong> in the top-right of the map. Save it to your account for offline access in Kerry.</p>
+          </div>
+
+          <div class="gmap-callout">
+            <div class="gmap-callout-label">Base Camp</div>
+            <div class="gmap-callout-body">
+              <strong>V93 F9V3</strong><br/>
+              Greenane, Templenoe<br/>
+              Co. Kerry, Ireland
+            </div>
+          </div>
+        </aside>
       </div>
     </section>
   </div>
