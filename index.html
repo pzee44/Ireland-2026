@@ -483,6 +483,80 @@
     border-radius: 2px;
   }
 
+  /* ===== ITINERARY ITEM MAP BUTTON ===== */
+  .item-map-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    padding: 0;
+    margin-left: 0.4rem;
+    border: 1px solid var(--divider);
+    background: transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 10px;
+    line-height: 1;
+    vertical-align: middle;
+    transition: all 0.15s;
+    opacity: 0.6;
+  }
+  .item-map-btn:hover {
+    background: var(--brass);
+    border-color: var(--brass);
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  /* ===== MAP JUMP CHIPS ===== */
+  .gmap-jump {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+    padding: 0.85rem 1.2rem;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-left: 3px solid var(--brass);
+    box-shadow: var(--shadow-soft);
+  }
+  .gmap-jump-label {
+    font-family: 'Cormorant SC', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.28em;
+    color: var(--brass);
+    white-space: nowrap;
+  }
+  .gmap-jump-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+  .gmap-chip {
+    font-family: 'Libre Caslon Text', serif;
+    font-size: 0.8rem;
+    padding: 0.4rem 0.85rem;
+    border: 1px solid var(--divider);
+    background: transparent;
+    color: var(--ink);
+    cursor: pointer;
+    border-radius: 18px;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .gmap-chip:hover {
+    background: var(--forest);
+    color: var(--cream);
+    border-color: var(--forest);
+    transform: translateY(-1px);
+  }
+  .gmap-chip.golf:hover { background: var(--forest); }
+  .gmap-chip.airbnb:hover { background: var(--brass); color: var(--forest-deep); border-color: var(--brass); }
+  .gmap-chip.town:hover { background: var(--brass-bright); color: var(--forest-deep); border-color: var(--brass-bright); }
+  .gmap-chip.travel:hover { background: var(--moss); color: var(--cream); border-color: var(--moss); }
+
   /* ===== MAP (Google My Maps embed) ===== */
   .gmap-wrap {
     display: grid;
@@ -1032,6 +1106,290 @@
   [data-theme="dark"] .legend-panel h3,
   [data-theme="dark"] .spotify-block h3 { color: var(--brass-bright); }
 
+  /* ===== SCORECARD MODAL ===== */
+  .scorecard-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(13, 26, 19, 0.85);
+    z-index: 1000;
+    align-items: flex-start;
+    justify-content: center;
+    overflow-y: auto;
+    padding: 2rem 1rem;
+  }
+  .scorecard-modal.open { display: flex; animation: scorecardFade 0.25s ease; }
+  @keyframes scorecardFade { from { opacity: 0; } to { opacity: 1; } }
+
+  .scorecard-dialog {
+    background: var(--parchment);
+    max-width: 920px;
+    width: 100%;
+    padding: 2rem;
+    box-shadow: var(--shadow-deep), inset 0 0 0 1px var(--brass);
+    position: relative;
+    animation: scorecardSlide 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  @keyframes scorecardSlide { from { transform: translateY(20px); opacity: 0; } to { transform: none; opacity: 1; } }
+
+  .scorecard-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--brass);
+    margin-bottom: 1.5rem;
+  }
+  .scorecard-kicker {
+    font-family: 'Cormorant SC', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.3em;
+    color: var(--brass);
+    margin-bottom: 0.25rem;
+  }
+  .scorecard-head h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 2rem;
+    color: var(--forest-deep);
+    font-weight: 600;
+    line-height: 1;
+    margin: 0;
+  }
+  [data-theme="dark"] .scorecard-head h2 { color: var(--brass-bright); }
+  .scorecard-meta {
+    font-family: 'Libre Caslon Text', serif;
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    margin-top: 0.35rem;
+  }
+  .scorecard-close {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid var(--brass);
+    background: transparent;
+    color: var(--forest-deep);
+    font-size: 1.5rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+  [data-theme="dark"] .scorecard-close { color: var(--brass-bright); }
+  .scorecard-close:hover { background: var(--brass); color: var(--cream); }
+
+  .scorecard-player {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+  }
+  .scorecard-player label {
+    font-family: 'Cormorant SC', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.25em;
+    color: var(--brass);
+  }
+  .scorecard-player input {
+    flex: 1;
+    max-width: 260px;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid var(--divider);
+    background: var(--card-bg);
+    color: var(--ink);
+    font-family: 'Libre Caslon Text', serif;
+    font-size: 0.95rem;
+    border-radius: 2px;
+  }
+  .scorecard-player input:focus {
+    outline: none;
+    border-color: var(--brass);
+  }
+
+  .scorecard-table-wrap {
+    overflow-x: auto;
+    margin-bottom: 1.5rem;
+    border: 1px solid var(--divider);
+  }
+  .scorecard-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Libre Caslon Text', serif;
+    min-width: 760px;
+  }
+  .scorecard-table th,
+  .scorecard-table td {
+    padding: 0.45rem 0.3rem;
+    text-align: center;
+    border-right: 1px solid var(--divider);
+    border-bottom: 1px solid var(--divider);
+    font-size: 0.85rem;
+  }
+  .scorecard-table th:first-child,
+  .scorecard-table td:first-child {
+    font-family: 'Cormorant SC', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    color: var(--brass);
+    background: var(--cream-warm);
+    text-align: right;
+    padding-right: 0.6rem;
+    min-width: 60px;
+    position: sticky;
+    left: 0;
+  }
+  .scorecard-table tr:last-child td { border-bottom: none; }
+  .scorecard-hole-row th {
+    background: var(--forest-deep);
+    color: var(--brass-bright);
+    font-family: 'Cormorant SC', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.15em;
+  }
+  .scorecard-par-row td {
+    background: var(--cream-warm);
+    color: var(--ink-soft);
+    font-weight: 600;
+  }
+  .scorecard-par-row td.front-total, .scorecard-par-row td.back-total, .scorecard-par-row td.grand-total {
+    background: var(--forest-deep);
+    color: var(--brass-bright);
+    font-family: 'Cormorant SC', serif;
+    font-size: 0.75rem;
+  }
+  .scorecard-score-row td { padding: 0.2rem; }
+  .scorecard-score-row input {
+    width: 100%;
+    min-width: 40px;
+    padding: 0.45rem 0.2rem;
+    border: 1px solid var(--divider);
+    background: var(--card-bg);
+    color: var(--ink);
+    text-align: center;
+    font-family: 'Libre Caslon Text', serif;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 2px;
+    -moz-appearance: textfield;
+  }
+  .scorecard-score-row input::-webkit-outer-spin-button,
+  .scorecard-score-row input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  .scorecard-score-row input:focus {
+    outline: none;
+    border-color: var(--brass);
+    background: var(--cream-warm);
+  }
+  .scorecard-score-row td.total-cell {
+    background: var(--forest-deep);
+    color: var(--brass-bright);
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  .scorecard-vs-row td {
+    font-weight: 600;
+    font-size: 0.9rem;
+    background: var(--card-bg);
+  }
+  .scorecard-vs-row td.under { color: #d4a94a; }
+  .scorecard-vs-row td.over { color: var(--red-seal); }
+  .scorecard-vs-row td.even { color: var(--ink-soft); }
+  .scorecard-vs-row td.total-cell {
+    background: var(--cream-warm);
+    font-size: 1rem;
+  }
+
+  .scorecard-totals {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+  .scorecard-total-card {
+    padding: 1rem;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-top: 2px solid var(--brass);
+    text-align: center;
+  }
+  .scorecard-total-card-final {
+    background: linear-gradient(135deg, var(--forest) 0%, var(--forest-deep) 100%);
+    color: var(--cream);
+    border-top-color: var(--brass-bright);
+  }
+  .scorecard-total-label {
+    font-family: 'Cormorant SC', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.28em;
+    color: var(--brass);
+    margin-bottom: 0.5rem;
+  }
+  .scorecard-total-card-final .scorecard-total-label { color: var(--brass-bright); }
+  .scorecard-total-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--forest-deep);
+  }
+  [data-theme="dark"] .scorecard-total-card:not(.scorecard-total-card-final) .scorecard-total-val { color: var(--brass-bright); }
+  .scorecard-total-card-final .scorecard-total-val { color: var(--cream); }
+  .scorecard-total-par {
+    font-size: 1rem;
+    color: var(--ink-soft);
+    font-style: italic;
+    margin-left: 0.15rem;
+  }
+  .scorecard-total-card-final .scorecard-total-par { color: rgba(244,236,216,0.6); }
+  .scorecard-total-diff {
+    font-family: 'Cormorant SC', serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.15em;
+    margin-top: 0.5rem;
+    color: var(--ink-soft);
+  }
+  .scorecard-total-card-final .scorecard-total-diff { color: var(--brass-bright); }
+
+  .scorecard-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    padding-top: 1rem;
+    border-top: 1px dashed var(--divider);
+  }
+  .scorecard-btn-sm {
+    font-family: 'Libre Caslon Text', serif;
+    font-size: 0.8rem;
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--divider);
+    background: transparent;
+    color: var(--ink-soft);
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+  }
+  .scorecard-btn-sm:hover { border-color: var(--forest); color: var(--forest-deep); }
+  [data-theme="dark"] .scorecard-btn-sm:hover { color: var(--brass-bright); }
+  .scorecard-btn-sm.brass {
+    background: var(--brass);
+    color: var(--forest-deep);
+    border-color: var(--brass);
+  }
+  .scorecard-btn-sm.brass:hover { background: var(--brass-bright); }
+
+  @media (max-width: 640px) {
+    .scorecard-dialog { padding: 1.25rem; }
+    .scorecard-head h2 { font-size: 1.5rem; }
+    .scorecard-totals { grid-template-columns: 1fr; }
+    .scorecard-total-val { font-size: 1.8rem; }
+  }
+
   /* ===== FOOTER ===== */
   footer {
     text-align: center;
@@ -1162,6 +1520,22 @@
         <h2>The Kingdom</h2>
         <div class="rule"></div>
       </div>
+
+      <div class="gmap-jump">
+        <div class="gmap-jump-label">JUMP TO:</div>
+        <div class="gmap-jump-chips">
+          <button class="gmap-chip airbnb" data-jump="51.8695,-9.6810" data-label="Airbnb">🏠 Airbnb</button>
+          <button class="gmap-chip golf" data-jump="51.8747,-9.6721" data-label="Ring of Kerry GC">⛳ Ring of Kerry</button>
+          <button class="gmap-chip golf" data-jump="51.8805,-9.5885" data-label="Kenmare GC">⛳ Kenmare</button>
+          <button class="gmap-chip golf" data-jump="52.0827,-9.9255" data-label="Dooks">⛳ Dooks</button>
+          <button class="gmap-chip golf" data-jump="51.8391,-10.1954" data-label="Waterville">⛳ Waterville</button>
+          <button class="gmap-chip golf" data-jump="52.5013,-9.6725" data-label="Ballybunion">⛳ Ballybunion</button>
+          <button class="gmap-chip town" data-jump="52.0599,-9.5062" data-label="Killarney">🍺 Killarney</button>
+          <button class="gmap-chip town" data-jump="51.8810,-9.5830" data-label="Kenmare Town">🍺 Kenmare Town</button>
+          <button class="gmap-chip travel" data-jump="52.7019,-8.9248" data-label="Shannon Airport">✈ Shannon</button>
+        </div>
+      </div>
+
       <div class="gmap-wrap">
         <div class="gmap-frame">
           <div class="gmap-frame-corner tl"></div>
@@ -1227,15 +1601,72 @@
   </footer>
 </div>
 
+<!-- ===== SCORECARD MODAL ===== -->
+<div class="scorecard-modal" id="scorecard-modal">
+  <div class="scorecard-dialog" role="dialog" aria-modal="true" aria-labelledby="scorecard-title">
+    <div class="scorecard-head">
+      <div class="scorecard-head-text">
+        <div class="scorecard-kicker">Scorecard</div>
+        <h2 id="scorecard-title">—</h2>
+        <div class="scorecard-meta" id="scorecard-meta">—</div>
+      </div>
+      <button type="button" class="scorecard-close" onclick="closeScorecard()" aria-label="Close">×</button>
+    </div>
+
+    <div class="scorecard-player">
+      <label for="scorecard-player-name">Player:</label>
+      <input type="text" id="scorecard-player-name" placeholder="Your name" maxlength="20" oninput="savePlayerName(this.value)"/>
+    </div>
+
+    <div class="scorecard-table-wrap">
+      <table class="scorecard-table">
+        <thead>
+          <tr class="scorecard-hole-row"><th>Hole</th><!--holes-->
+          </tr>
+          <tr class="scorecard-par-row"><th>Par</th><!--pars-->
+          </tr>
+          <tr class="scorecard-score-row"><th>Score</th><!--inputs-->
+          </tr>
+          <tr class="scorecard-vs-row"><th>vs Par</th><!--diffs-->
+          </tr>
+        </thead>
+      </table>
+    </div>
+
+    <div class="scorecard-totals">
+      <div class="scorecard-total-card">
+        <div class="scorecard-total-label">FRONT 9</div>
+        <div class="scorecard-total-val"><span id="score-front">—</span><span class="scorecard-total-par" id="par-front">/—</span></div>
+        <div class="scorecard-total-diff" id="diff-front">—</div>
+      </div>
+      <div class="scorecard-total-card">
+        <div class="scorecard-total-label">BACK 9</div>
+        <div class="scorecard-total-val"><span id="score-back">—</span><span class="scorecard-total-par" id="par-back">/—</span></div>
+        <div class="scorecard-total-diff" id="diff-back">—</div>
+      </div>
+      <div class="scorecard-total-card scorecard-total-card-final">
+        <div class="scorecard-total-label">TOTAL</div>
+        <div class="scorecard-total-val"><span id="score-total">—</span><span class="scorecard-total-par" id="par-total">/—</span></div>
+        <div class="scorecard-total-diff" id="diff-total">—</div>
+      </div>
+    </div>
+
+    <div class="scorecard-footer">
+      <button type="button" class="scorecard-btn-sm" onclick="resetScorecard()">Reset</button>
+      <button type="button" class="scorecard-btn-sm brass" onclick="shareScorecard()">📋 Copy Summary</button>
+    </div>
+  </div>
+</div>
+
 <script>
 const TRIP_START = new Date('2026-09-11T22:50:00-04:00');
 
 const courses = {
-  'Ring of Kerry': { lat: 51.87473, lng: -9.67211, par: 72, yards: 6820, day: 'Sun 9/13', time: '8:40 AM', town: 'Templenoe', url: 'https://ringofkerrygolf.com/', img: './ring%20of%20kerry.jpeg', cond: "Parkland-heathland hybrid overlooking Kenmare Bay with Caha Mountains backdrop. USGA spec greens considered among Ireland's finest. Designed by Eddie Hackett & Ron Kirby.", lore: "Hackett's final design before his death in 1996, completed by Ron Kirby (formerly of Jack Nicklaus Golf Design). Over 250,000 tons of sand were imported during construction. The signature 6th — 'Ladies View' — is a short par 4 from a raised tee with water right and a stream left. Considered one of the most breathtaking tee shots in Ireland.", famous: ["Eddie Hackett (designer)", "Ron Kirby (co-designer)"] },
-  'Kenmare GC': { lat: 51.8819, lng: -9.5830, par: 71, yards: 5500, day: 'Sun 9/13', time: '2:30/2:40', town: 'Kenmare', url: 'https://kenmaregolfclub.com/', img: './kenmare.jpeg', cond: "Short but charming parkland laid out within the old Kenmare Estate. Tight fairways demand accuracy over power. Lovely walk after the morning round at Ring of Kerry.", lore: "Founded in 1903, one of Kerry's oldest clubs. Set on the historic Lansdowne Estate grounds that once belonged to the Marquis of Lansdowne. Mature trees, river hazards, and views of the Caha Mountains from nearly every hole.", famous: ["Christy O'Connor Sr. (club pro, 1950s)"] },
-  'Dooks': { lat: 52.0667, lng: -9.8814, par: 71, yards: 6586, day: 'Mon 9/14', time: '8:30/8:40', town: 'Glenbeigh', url: 'https://www.dooks.com/', img: './dooks.jpeg', cond: "True links on Dingle Bay. The most natural course in the region, with gorse, pot bunkers, and holes that follow the dunes. Wind will dictate the entire round.", lore: "One of the oldest golf courses in Ireland — founded in 1889 by officers of the Royal Horse Artillery stationed in Glenbeigh. The name 'Dooks' comes from the Irish 'dumhach,' meaning sand dune. Redesigned by Martin Hawtree in 2006. The natterjack toad — Ireland's rarest amphibian — lives on the course grounds.", famous: ["Martin Hawtree (redesigned 2006)"] },
-  'Waterville': { lat: 51.8283, lng: -10.1456, par: 72, yards: 7378, day: 'Tue 9/15', time: '8:10/8:20', town: 'Waterville', url: 'https://watervillegolflinks.ie/', img: './waterville.jpeg', cond: "World-top-100 links. Long, open, exposed to Atlantic wind. Payne Stewart practiced here before winning The Open. The back nine is an all-timer.", lore: "Redesigned in 2006 by Tom Fazio. The par-3 12th, 'Mass Hole,' is named for the hollow where locals secretly held Catholic mass during penal times. Payne Stewart was made an honorary captain in 1999 — a bronze statue of him stands near the clubhouse. He tragically died months later.", famous: ["Payne Stewart (honorary captain)", "Tiger Woods", "Mark O'Meara", "Tom Watson", "Sergio García"] },
-  'Ballybunion Cashen': { lat: 52.5086, lng: -9.6761, par: 71, yards: 6215, day: 'Wed 9/16', time: '12:56/1:18', town: 'Ballybunion', url: 'https://ballybuniongolfclub.com/', img: './Ballybunion.jpeg', cond: "Robert Trent Jones Sr.'s wilder sister course to the Old Course. Massive dunes, blind shots, punishing rough. A test of creativity and resilience.", lore: "Designed by Robert Trent Jones Sr. in 1984 and opened in 1985. Jones called the site 'the finest piece of linksland in the world.' The Cashen is shorter but arguably more dramatic than the Old Course — every hole features a dune, a blind shot, or a forced carry. Tom Watson famously declared Ballybunion 'the finest seaside course I have ever seen.'", famous: ["Robert Trent Jones Sr. (designer)", "Tom Watson", "Bill Clinton (played 1998)", "Rory McIlroy"] },
+  'Ring of Kerry': { lat: 51.87473, lng: -9.67211, par: 72, yards: 6820, day: 'Sun 9/13', time: '8:40 AM', town: 'Templenoe', url: 'https://ringofkerrygolf.com/', img: './ring%20of%20kerry.jpeg', pars: [4,5,3,4,4,4,3,5,4, 4,3,5,4,4,3,4,5,4], cond: "Parkland-heathland hybrid overlooking Kenmare Bay with Caha Mountains backdrop. USGA spec greens considered among Ireland's finest. Designed by Eddie Hackett & Ron Kirby.", lore: "Hackett's final design before his death in 1996, completed by Ron Kirby (formerly of Jack Nicklaus Golf Design). Over 250,000 tons of sand were imported during construction. The signature 6th — 'Ladies View' — is a short par 4 from a raised tee with water right and a stream left. Considered one of the most breathtaking tee shots in Ireland.", famous: ["Eddie Hackett (designer)", "Ron Kirby (co-designer)"] },
+  'Kenmare GC': { lat: 51.8819, lng: -9.5830, par: 71, yards: 5500, day: 'Sun 9/13', time: '2:30/2:40', town: 'Kenmare', url: 'https://kenmaregolfclub.com/', img: './kenmare.jpeg', pars: [4,4,3,5,4,4,3,4,5, 4,4,3,5,4,4,4,3,4], cond: "Short but charming parkland laid out within the old Kenmare Estate. Tight fairways demand accuracy over power. Lovely walk after the morning round at Ring of Kerry.", lore: "Founded in 1903, one of Kerry's oldest clubs. Set on the historic Lansdowne Estate grounds that once belonged to the Marquis of Lansdowne. Mature trees, river hazards, and views of the Caha Mountains from nearly every hole.", famous: ["Christy O'Connor Sr. (club pro, 1950s)"] },
+  'Dooks': { lat: 52.0667, lng: -9.8814, par: 71, yards: 6586, day: 'Mon 9/14', time: '8:30/8:40', town: 'Glenbeigh', url: 'https://www.dooks.com/', img: './dooks.jpeg', pars: [4,5,3,4,4,4,3,4,5, 4,4,3,4,5,3,4,4,4], cond: "True links on Dingle Bay. The most natural course in the region, with gorse, pot bunkers, and holes that follow the dunes. Wind will dictate the entire round.", lore: "One of the oldest golf courses in Ireland — founded in 1889 by officers of the Royal Horse Artillery stationed in Glenbeigh. The name 'Dooks' comes from the Irish 'dumhach,' meaning sand dune. Redesigned by Martin Hawtree in 2006. The natterjack toad — Ireland's rarest amphibian — lives on the course grounds.", famous: ["Martin Hawtree (redesigned 2006)"] },
+  'Waterville': { lat: 51.8283, lng: -10.1456, par: 72, yards: 7378, day: 'Tue 9/15', time: '8:10/8:20', town: 'Waterville', url: 'https://watervillegolflinks.ie/', img: './waterville.jpeg', pars: [4,4,4,3,5,3,4,5,4, 4,5,3,5,4,4,4,3,5], cond: "World-top-100 links. Long, open, exposed to Atlantic wind. Payne Stewart practiced here before winning The Open. The back nine is an all-timer.", lore: "Redesigned in 2006 by Tom Fazio. The par-3 12th, 'Mass Hole,' is named for the hollow where locals secretly held Catholic mass during penal times. Payne Stewart was made an honorary captain in 1999 — a bronze statue of him stands near the clubhouse. He tragically died months later.", famous: ["Payne Stewart (honorary captain)", "Tiger Woods", "Mark O'Meara", "Tom Watson", "Sergio García"] },
+  'Ballybunion Cashen': { lat: 52.5086, lng: -9.6761, par: 71, yards: 6215, day: 'Wed 9/16', time: '12:56/1:18', town: 'Ballybunion', url: 'https://ballybuniongolfclub.com/', img: './Ballybunion.jpeg', pars: [4,4,3,5,4,4,3,4,5, 4,4,3,4,5,4,3,4,4], cond: "Robert Trent Jones Sr.'s wilder sister course to the Old Course. Massive dunes, blind shots, punishing rough. A test of creativity and resilience.", lore: "Designed by Robert Trent Jones Sr. in 1984 and opened in 1985. Jones called the site 'the finest piece of linksland in the world.' The Cashen is shorter but arguably more dramatic than the Old Course — every hole features a dune, a blind shot, or a forced carry. Tom Watson famously declared Ballybunion 'the finest seaside course I have ever seen.'", famous: ["Robert Trent Jones Sr. (designer)", "Tom Watson", "Bill Clinton (played 1998)", "Rory McIlroy"] },
 };
 
 const trip = [
@@ -1510,25 +1941,37 @@ trip.forEach(d => {
   const card = document.createElement('div');
   card.className = 'day-card ' + d.type;
   const itemsHtml = d.items.map(i => {
-    // Build label with optional link
+    // Build label with optional external link
     let labelHtml = i.label;
+    let jumpTarget = null;  // If set, we'll add a map-pin button
+
     if (i.courseLink && courses[i.courseLink]) {
       const c = courses[i.courseLink];
       labelHtml = `<a href="${c.url}" target="_blank" rel="noopener" class="item-link">${i.label} ↗</a>`;
+      jumpTarget = { lat: c.lat, lng: c.lng, label: i.courseLink };
     } else if (i.pinId) {
       const p = findPin(i.pinId);
-      if (p) labelHtml = `<a href="${gmapsSearch(p.name, p.lat, p.lng)}" target="_blank" rel="noopener" class="item-link">${i.label} ↗</a>`;
+      if (p) {
+        labelHtml = `<a href="${gmapsSearch(p.name, p.lat, p.lng)}" target="_blank" rel="noopener" class="item-link">${i.label} ↗</a>`;
+        jumpTarget = { lat: p.lat, lng: p.lng, label: p.name };
+      }
     } else if (i.airbnbUrl) {
       labelHtml = `<a href="${i.airbnbUrl}" target="_blank" rel="noopener" class="item-link">${i.label} ↗</a>`;
+      jumpTarget = { lat: AIRBNB.lat, lng: AIRBNB.lng, label: 'Airbnb' };
     } else if (i.driverUrl) {
       labelHtml = `<a href="${i.driverUrl}" target="_blank" rel="noopener" class="item-link">${i.label} ↗</a>`;
     }
+
+    const mapBtn = jumpTarget
+      ? `<button type="button" class="item-map-btn" onclick="jumpToOnMap(${jumpTarget.lat}, ${jumpTarget.lng}, '${jumpTarget.label.replace(/'/g, "\\'")}')" title="Show on map">📍</button>`
+      : '';
+
     return `
       <div class="day-item">
         <div class="icon">${icons[i.icon] || ''}</div>
         <div style="flex:1;">
           <div class="time">${i.time}</div>
-          <div class="label">${labelHtml}</div>
+          <div class="label">${labelHtml}${mapBtn}</div>
           ${i.note ? `<span class="note">${i.note}</span>` : ''}
         </div>
       </div>
@@ -1630,6 +2073,7 @@ Object.entries(courses).forEach(([name, c]) => {
       <div class="course-actions">
         <a href="${dirUrl}" target="_blank" rel="noopener" class="course-btn">🗺 Directions from Airbnb</a>
         <a href="${c.url}" target="_blank" rel="noopener" class="course-btn brass">Course Website ↗</a>
+        <button type="button" class="course-btn scorecard-btn" onclick="openScorecard('${name}')">📋 Scorecard</button>
       </div>
     </div>
   `;
@@ -1656,5 +2100,271 @@ Object.entries(courses).forEach(([name, c]) => {
     card.querySelector('[data-course-wx]').innerHTML = '<div class="wx-details" style="font-style:italic;">—</div>';
   }
 });
+// ===== MAP JUMP CHIPS =====
+function jumpToOnMap(lat, lng, label) {
+  const iframe = document.querySelector('.gmap-embed');
+  if (!iframe) return;
+  // Switch to map tab
+  const mapTab = document.querySelector('.tab[data-tab="map"]');
+  if (mapTab && !mapTab.classList.contains('active')) mapTab.click();
+  // Rebuild iframe src with ll (lat,lng) and z (zoom) params
+  const baseUrl = 'https://www.google.com/maps/d/embed?mid=191rnWNfTaevPxihlNoINlhxYr8g_18U&ehbc=2E312F';
+  iframe.src = `${baseUrl}&ll=${lat}%2C${lng}&z=14`;
+  // Smooth scroll to map
+  setTimeout(() => {
+    const wrap = document.querySelector('.gmap-wrap');
+    if (wrap) wrap.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 150);
+}
+
+document.querySelectorAll('.gmap-chip').forEach(chip => {
+  chip.addEventListener('click', () => {
+    const [lat, lng] = chip.dataset.jump.split(',').map(parseFloat);
+    jumpToOnMap(lat, lng, chip.dataset.label);
+  });
+});
+
+// ===== SCORECARD =====
+let activeScorecard = null;
+
+function openScorecard(courseName) {
+  const c = courses[courseName];
+  if (!c) return;
+  activeScorecard = courseName;
+
+  const modal = document.getElementById('scorecard-modal');
+  const title = document.getElementById('scorecard-title');
+  const meta = document.getElementById('scorecard-meta');
+  title.textContent = courseName;
+  meta.innerHTML = `<strong>${c.day}</strong> · ${c.time} · ${c.town}, Co. Kerry · Par ${c.par} · ${c.yards.toLocaleString()} yards`;
+
+  // Load saved player name
+  const savedName = localStorage.getItem('scorecard-player') || '';
+  document.getElementById('scorecard-player-name').value = savedName;
+
+  // Build the table
+  const pars = c.pars || Array(18).fill(4);
+  const frontPar = pars.slice(0, 9).reduce((a,b)=>a+b, 0);
+  const backPar = pars.slice(9, 18).reduce((a,b)=>a+b, 0);
+  const totalPar = frontPar + backPar;
+
+  // Hole row: 1-9, OUT, 10-18, IN, TOTAL
+  const holeCells = [];
+  for (let i = 1; i <= 9; i++) holeCells.push(`<th>${i}</th>`);
+  holeCells.push(`<th class="front-total">OUT</th>`);
+  for (let i = 10; i <= 18; i++) holeCells.push(`<th>${i}</th>`);
+  holeCells.push(`<th class="back-total">IN</th>`);
+  holeCells.push(`<th class="grand-total">TOT</th>`);
+
+  // Par row
+  const parCells = [];
+  for (let i = 0; i < 9; i++) parCells.push(`<td>${pars[i]}</td>`);
+  parCells.push(`<td class="front-total">${frontPar}</td>`);
+  for (let i = 9; i < 18; i++) parCells.push(`<td>${pars[i]}</td>`);
+  parCells.push(`<td class="back-total">${backPar}</td>`);
+  parCells.push(`<td class="grand-total">${totalPar}</td>`);
+
+  // Score row (input fields)
+  const saved = loadScores(courseName);
+  const scoreCells = [];
+  for (let i = 0; i < 9; i++) {
+    scoreCells.push(`<td><input type="number" min="1" max="15" data-hole="${i}" value="${saved[i] || ''}" oninput="updateScorecard()" onfocus="this.select()"/></td>`);
+  }
+  scoreCells.push(`<td class="total-cell" id="score-front-cell">—</td>`);
+  for (let i = 9; i < 18; i++) {
+    scoreCells.push(`<td><input type="number" min="1" max="15" data-hole="${i}" value="${saved[i] || ''}" oninput="updateScorecard()" onfocus="this.select()"/></td>`);
+  }
+  scoreCells.push(`<td class="total-cell" id="score-back-cell">—</td>`);
+  scoreCells.push(`<td class="total-cell" id="score-total-cell">—</td>`);
+
+  // vs Par row (will be populated by updateScorecard)
+  const diffCells = [];
+  for (let i = 0; i < 9; i++) diffCells.push(`<td data-diff="${i}">—</td>`);
+  diffCells.push(`<td class="total-cell" id="diff-front-cell">—</td>`);
+  for (let i = 9; i < 18; i++) diffCells.push(`<td data-diff="${i}">—</td>`);
+  diffCells.push(`<td class="total-cell" id="diff-back-cell">—</td>`);
+  diffCells.push(`<td class="total-cell" id="diff-total-cell">—</td>`);
+
+  // Populate the table
+  const table = modal.querySelector('.scorecard-table');
+  table.querySelector('.scorecard-hole-row').innerHTML = '<th>Hole</th>' + holeCells.join('');
+  table.querySelector('.scorecard-par-row').innerHTML = '<th>Par</th>' + parCells.join('');
+  table.querySelector('.scorecard-score-row').innerHTML = '<th>Score</th>' + scoreCells.join('');
+  table.querySelector('.scorecard-vs-row').innerHTML = '<th>vs Par</th>' + diffCells.join('');
+
+  // Set par totals in summary
+  document.getElementById('par-front').textContent = '/' + frontPar;
+  document.getElementById('par-back').textContent = '/' + backPar;
+  document.getElementById('par-total').textContent = '/' + totalPar;
+
+  updateScorecard();
+
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeScorecard() {
+  document.getElementById('scorecard-modal').classList.remove('open');
+  document.body.style.overflow = '';
+  activeScorecard = null;
+}
+
+// Close modal on background click or Escape
+document.getElementById('scorecard-modal').addEventListener('click', (e) => {
+  if (e.target.id === 'scorecard-modal') closeScorecard();
+});
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && activeScorecard) closeScorecard();
+});
+
+function savePlayerName(name) {
+  try { localStorage.setItem('scorecard-player', name); } catch (e) {}
+}
+
+function loadScores(courseName) {
+  try {
+    const raw = localStorage.getItem('scorecard-' + courseName);
+    return raw ? JSON.parse(raw) : Array(18).fill(null);
+  } catch (e) { return Array(18).fill(null); }
+}
+
+function saveScores(courseName, scores) {
+  try { localStorage.setItem('scorecard-' + courseName, JSON.stringify(scores)); } catch (e) {}
+}
+
+function updateScorecard() {
+  if (!activeScorecard) return;
+  const c = courses[activeScorecard];
+  const pars = c.pars || Array(18).fill(4);
+
+  const scores = [];
+  document.querySelectorAll('.scorecard-score-row input[data-hole]').forEach(input => {
+    const h = parseInt(input.dataset.hole);
+    const val = parseInt(input.value);
+    scores[h] = (val >= 1 && val <= 15) ? val : null;
+  });
+
+  saveScores(activeScorecard, scores);
+
+  // Compute per-hole diff
+  let frontScore = 0, frontHolesPlayed = 0;
+  let backScore = 0, backHolesPlayed = 0;
+
+  for (let i = 0; i < 18; i++) {
+    const s = scores[i];
+    const diffCell = document.querySelector(`.scorecard-vs-row td[data-diff="${i}"]`);
+    if (s != null) {
+      const diff = s - pars[i];
+      diffCell.textContent = diff === 0 ? 'E' : (diff > 0 ? '+' + diff : diff);
+      diffCell.className = diff === 0 ? 'even' : (diff > 0 ? 'over' : 'under');
+      if (i < 9) { frontScore += s; frontHolesPlayed++; }
+      else { backScore += s; backHolesPlayed++; }
+    } else {
+      diffCell.textContent = '—';
+      diffCell.className = '';
+    }
+  }
+
+  const totalScore = frontScore + backScore;
+  const totalHoles = frontHolesPlayed + backHolesPlayed;
+
+  // Par totals for holes played
+  const frontPar = pars.slice(0, Math.min(9, frontHolesPlayed)).reduce((a,b)=>a+b, 0);
+  const backPar = pars.slice(9, 9 + backHolesPlayed).reduce((a,b)=>a+b, 0);
+
+  // Use full par when all 9 played
+  const frontParFull = pars.slice(0, 9).reduce((a,b)=>a+b, 0);
+  const backParFull = pars.slice(9, 18).reduce((a,b)=>a+b, 0);
+
+  // In-table totals
+  document.getElementById('score-front-cell').textContent = frontHolesPlayed > 0 ? frontScore : '—';
+  document.getElementById('score-back-cell').textContent = backHolesPlayed > 0 ? backScore : '—';
+  document.getElementById('score-total-cell').textContent = totalHoles > 0 ? totalScore : '—';
+
+  const frontDiff = frontHolesPlayed === 9 ? frontScore - frontParFull : (frontHolesPlayed > 0 ? frontScore - frontPar : null);
+  const backDiff = backHolesPlayed === 9 ? backScore - backParFull : (backHolesPlayed > 0 ? backScore - backPar : null);
+  const totalDiff = (frontDiff != null || backDiff != null) ? (frontDiff || 0) + (backDiff || 0) : null;
+
+  document.getElementById('diff-front-cell').textContent = frontDiff == null ? '—' : (frontDiff === 0 ? 'E' : (frontDiff > 0 ? '+' + frontDiff : frontDiff));
+  document.getElementById('diff-back-cell').textContent = backDiff == null ? '—' : (backDiff === 0 ? 'E' : (backDiff > 0 ? '+' + backDiff : backDiff));
+  document.getElementById('diff-total-cell').textContent = totalDiff == null ? '—' : (totalDiff === 0 ? 'E' : (totalDiff > 0 ? '+' + totalDiff : totalDiff));
+
+  // Summary cards
+  document.getElementById('score-front').textContent = frontHolesPlayed > 0 ? frontScore : '—';
+  document.getElementById('score-back').textContent = backHolesPlayed > 0 ? backScore : '—';
+  document.getElementById('score-total').textContent = totalHoles > 0 ? totalScore : '—';
+
+  const fmtDiff = (d, played) => {
+    if (d == null) return (played > 0 ? '(thru ' + played + ')' : 'No scores yet');
+    if (d === 0) return 'EVEN PAR';
+    if (d > 0) return '+' + d + ' OVER';
+    return d + ' UNDER';
+  };
+  document.getElementById('diff-front').textContent = fmtDiff(frontDiff, frontHolesPlayed);
+  document.getElementById('diff-back').textContent = fmtDiff(backDiff, backHolesPlayed);
+  document.getElementById('diff-total').textContent = fmtDiff(totalDiff, totalHoles);
+}
+
+function resetScorecard() {
+  if (!activeScorecard) return;
+  if (!confirm('Reset all scores for ' + activeScorecard + '?')) return;
+  try { localStorage.removeItem('scorecard-' + activeScorecard); } catch (e) {}
+  document.querySelectorAll('.scorecard-score-row input[data-hole]').forEach(i => i.value = '');
+  updateScorecard();
+}
+
+function shareScorecard() {
+  if (!activeScorecard) return;
+  const c = courses[activeScorecard];
+  const pars = c.pars || Array(18).fill(4);
+  const scores = loadScores(activeScorecard);
+  const player = localStorage.getItem('scorecard-player') || 'Player';
+
+  let frontScore = 0, frontHoles = 0, backScore = 0, backHoles = 0;
+  for (let i = 0; i < 9; i++) if (scores[i] != null) { frontScore += scores[i]; frontHoles++; }
+  for (let i = 9; i < 18; i++) if (scores[i] != null) { backScore += scores[i]; backHoles++; }
+  const totalScore = frontScore + backScore;
+  const totalHoles = frontHoles + backHoles;
+
+  if (totalHoles === 0) {
+    alert('No scores entered yet.');
+    return;
+  }
+
+  const totalPar = pars.reduce((a,b)=>a+b, 0);
+  const parPlayed = pars.filter((p,i) => scores[i] != null).reduce((a,b)=>a+b, 0);
+  const diff = totalScore - parPlayed;
+  const diffStr = diff === 0 ? 'EVEN' : (diff > 0 ? '+' + diff : diff.toString());
+
+  let summary = `⛳ ${player} @ ${activeScorecard}\n`;
+  summary += `${c.day} · ${c.time}\n\n`;
+  if (frontHoles > 0) {
+    summary += `Front 9: ${frontScore}`;
+    if (frontHoles < 9) summary += ` (thru ${frontHoles})`;
+    summary += '\n';
+  }
+  if (backHoles > 0) {
+    summary += `Back 9: ${backScore}`;
+    if (backHoles < 9) summary += ` (thru ${backHoles})`;
+    summary += '\n';
+  }
+  summary += `Total: ${totalScore} (${diffStr}`;
+  if (totalHoles < 18) summary += `, thru ${totalHoles}`;
+  summary += ')\n';
+  summary += `\nPar ${c.par} · ${c.yards.toLocaleString()} yards`;
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(summary).then(() => {
+      const btn = document.querySelector('.scorecard-btn-sm.brass');
+      const original = btn.textContent;
+      btn.textContent = '✓ Copied!';
+      setTimeout(() => btn.textContent = original, 1500);
+    }).catch(() => {
+      prompt('Copy this summary:', summary);
+    });
+  } else {
+    prompt('Copy this summary:', summary);
+  }
+}
 
 </script>
