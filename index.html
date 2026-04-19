@@ -483,60 +483,40 @@
     border-radius: 2px;
   }
 
-  /* ===== MAP ===== */
-  .map-wrap {
-    display: grid;
-    grid-template-columns: 1fr 320px;
-    gap: 2rem;
-    background: white;
+  /* ===== MAP (Google My Maps embed) ===== */
+  .gmap-wrap {
+    background: var(--card-bg);
     padding: 1.5rem;
     box-shadow: var(--shadow-med);
-    border: 1px solid rgba(31, 58, 46, 0.1);
+    border: 1px solid var(--card-border);
   }
-  @media (max-width: 860px) { .map-wrap { grid-template-columns: 1fr; } }
-
-  #leaflet-map {
-    height: 600px;
+  .gmap-embed {
     width: 100%;
-    border: 1px solid rgba(31, 58, 46, 0.15);
+    height: 640px;
+    border: 1px solid var(--divider);
+    display: block;
+  }
+  .gmap-legend {
+    margin-top: 1rem;
+    padding: 1rem 1.25rem;
     background: var(--cream-warm);
-    z-index: 1;
-  }
-
-  .legend-panel h3 {
-    font-family: 'Cormorant Garamond', serif;
-    font-style: italic;
-    font-size: 1.5rem;
-    color: var(--forest-deep);
-    margin-bottom: 1rem;
-    padding-bottom: 0.5rem;
-    border-bottom: 1px solid var(--brass);
-  }
-  .filter-group { margin-bottom: 1.5rem; }
-  .filter-label {
-    font-family: 'Cormorant SC', serif;
-    font-size: 0.75rem;
-    letter-spacing: 0.2em;
-    color: var(--ink-soft);
-    margin-bottom: 0.5rem;
-  }
-  .filter-btns { display: flex; flex-wrap: wrap; gap: 0.4rem; }
-  .filter-btn {
+    border-left: 3px solid var(--brass);
     font-family: 'Libre Caslon Text', serif;
-    font-size: 0.78rem;
-    padding: 0.35rem 0.7rem;
-    border: 1px solid rgba(31, 58, 46, 0.2);
-    background: transparent;
-    cursor: pointer;
-    border-radius: 2px;
-    transition: all 0.2s;
+    font-size: 0.9rem;
     color: var(--ink-soft);
+    line-height: 1.5;
   }
-  .filter-btn:hover { border-color: var(--forest); }
-  .filter-btn.active {
-    background: var(--forest);
-    color: var(--cream);
-    border-color: var(--forest);
+  .gmap-legend p { margin: 0; }
+  .gmap-legend p + p { margin-top: 0.5rem; }
+  .gmap-legend strong { color: var(--forest-deep); }
+  .gmap-legend .gmap-sub {
+    font-family: 'Cormorant SC', serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    color: var(--brass);
+  }
+  @media (max-width: 860px) {
+    .gmap-embed { height: 480px; }
   }
 
   .pin-detail {
@@ -956,8 +936,6 @@
   .custom-map-pin { background: transparent; border: none; }
 </style>
 
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-
 <div class="app-root">
   <button class="theme-toggle" id="theme-toggle" title="Toggle dark mode" aria-label="Toggle theme">
     <svg class="moon-icon" viewBox="0 0 24 24"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9 9-4.03 9-9c0-.46-.04-.92-.1-1.36-.98 1.37-2.58 2.26-4.4 2.26-2.98 0-5.4-2.42-5.4-5.4 0-1.81.89-3.42 2.26-4.4-.44-.06-.9-.1-1.36-.1z"/></svg>
@@ -1038,32 +1016,17 @@
         <h2>The Kingdom</h2>
         <div class="rule"></div>
       </div>
-      <div class="map-wrap">
-        <div id="leaflet-map"></div>
-        <div class="legend-panel">
-          <h3>Legend</h3>
-          <div class="filter-group">
-            <div class="filter-label">Filter pins</div>
-            <div class="filter-btns" id="filter-btns">
-              <button class="filter-btn active" data-filter="all">All</button>
-              <button class="filter-btn" data-filter="golf">⛳ Golf</button>
-              <button class="filter-btn" data-filter="stay">🏠 Stay</button>
-              <button class="filter-btn" data-filter="meal">🍽 Meals</button>
-              <button class="filter-btn" data-filter="pub">🍺 Pubs</button>
-            </div>
-          </div>
-          <div class="filter-group">
-            <div class="filter-label">Routes</div>
-            <div class="filter-btns">
-              <button class="filter-btn active" id="routes-on">Show drive routes</button>
-              <button class="filter-btn" id="routes-off">Hide</button>
-            </div>
-          </div>
-          <div class="pin-detail" id="pin-detail">
-            <span class="type-tag">Click a pin</span>
-            <span class="name">Select a location</span>
-            <p>Tap any marker on the map for details. Routes from the Airbnb to each course are drawn in brass.</p>
-          </div>
+      <div class="gmap-wrap">
+        <iframe
+          src="https://www.google.com/maps/d/embed?mid=191rnWNfTaevPxihlNoINlhxYr8g_18U&ehbc=2E312F"
+          class="gmap-embed"
+          loading="lazy"
+          allowfullscreen
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Ireland Golf Trip Map"></iframe>
+        <div class="gmap-legend">
+          <p><strong>Filter pins by category</strong> using the menu in the top-left of the map. <strong>Click any pin</strong> for the address, phone, and a link to open in Google Maps for directions.</p>
+          <p class="gmap-sub">⛳ Golf courses · 🏠 Airbnb · 🍺 Pubs by region · 🍽 Meals by region · ✈ Travel</p>
         </div>
       </div>
     </section>
@@ -1075,7 +1038,6 @@
   </footer>
 </div>
 
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 const TRIP_START = new Date('2026-09-11T22:50:00-04:00');
 
@@ -1210,10 +1172,6 @@ document.querySelectorAll('.tab').forEach(t => {
     document.querySelectorAll('.section').forEach(x => x.classList.remove('active'));
     t.classList.add('active');
     document.getElementById('section-' + t.dataset.tab).classList.add('active');
-    if (t.dataset.tab === 'map' && !window.__mapInitialized) {
-      initLeafletMap();
-      window.__mapInitialized = true;
-    }
   });
 });
 
@@ -1510,151 +1468,4 @@ Object.entries(courses).forEach(([name, c]) => {
   }
 });
 
-// Map
-let leafletMap = null;
-const pinLayers = { golf: L.layerGroup(), stay: L.layerGroup(), meal: L.layerGroup(), pub: L.layerGroup(), travel: L.layerGroup() };
-let routeLayer = null;
-
-const pinStyles = {
-  golf: { color: '#1f3a2e', label: '⛳' },
-  stay: { color: '#b08a3e', label: '🏠' },
-  meal: { color: '#8b2c1f', label: '🍽' },
-  pub: { color: '#d4a94a', label: '🍺' },
-  travel: { color: '#3a5a47', label: '✈' },
-};
-
-function makePinIcon(type) {
-  const style = pinStyles[type] || pinStyles.golf;
-  return L.divIcon({
-    className: 'custom-map-pin',
-    html: `<div style="background:${style.color};width:28px;height:28px;border-radius:50% 50% 50% 0;transform:rotate(-45deg);border:2px solid #faf6ea;box-shadow:0 2px 5px rgba(0,0,0,0.3);display:flex;align-items:center;justify-content:center;"><span style="transform:rotate(45deg);font-size:13px;">${style.label}</span></div>`,
-    iconSize: [28, 28], iconAnchor: [14, 28], popupAnchor: [0, -28]
-  });
-}
-
-function initLeafletMap() {
-  leafletMap = L.map('leaflet-map', { scrollWheelZoom: true }).setView([52.1, -9.7], 9);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© OpenStreetMap', maxZoom: 18
-  }).addTo(leafletMap);
-
-  // Geocoding: resolve Eircode/address to real coordinates via Nominatim.
-  // Cached in localStorage so this only hits the API once per pin, ever.
-  async function geocode(query) {
-    if (!query) return null;
-    const cacheKey = 'geocode:' + query;
-    try {
-      const cached = localStorage.getItem(cacheKey);
-      if (cached) return JSON.parse(cached);
-    } catch (e) {}
-    try {
-      const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=1&countrycodes=ie`;
-      const res = await fetch(url, { headers: { 'Accept-Language': 'en' } });
-      if (!res.ok) return null;
-      const data = await res.json();
-      if (!data || !data.length) return null;
-      const result = { lat: parseFloat(data[0].lat), lng: parseFloat(data[0].lon) };
-      try { localStorage.setItem(cacheKey, JSON.stringify(result)); } catch (e) {}
-      return result;
-    } catch (e) { return null; }
-  }
-
-  // Build marker now with its current coords, then async-resolve the real position
-  // and update the marker if geocoding succeeds. Pins without Eircode stay put.
-  async function refinePinPosition(pin, marker) {
-    // Prefer Eircode → fall back to name + town from desc → fall back to nothing
-    const query = pin.eircode || (pin.desc && pin.desc.match(/^[^·]+/) ? `${pin.name}, ${pin.desc.match(/^[^·]+/)[0].trim()}, Ireland` : null);
-    if (!query) return;
-    const geo = await geocode(query);
-    if (geo && Math.abs(geo.lat - pin.lat) + Math.abs(geo.lng - pin.lng) > 0.001) {
-      // Only move if the geocoded position differs meaningfully from our stored position
-      marker.setLatLng([geo.lat, geo.lng]);
-      pin.lat = geo.lat;  // update stored pin so route lines use correct coord
-      pin.lng = geo.lng;
-    }
-  }
-
-  pins.forEach(p => {
-    const marker = L.marker([p.lat, p.lng], { icon: makePinIcon(p.type) });
-
-    // Figure out the best link for this pin
-    let linkUrl;
-    if (p.type === 'golf') {
-      // Match to course data if possible for website link
-      const matchedCourse = Object.entries(courses).find(([name]) => name === p.name);
-      linkUrl = matchedCourse ? matchedCourse[1].url : gmapsSearch(p.name, p.lat, p.lng);
-    } else if (p.id === 'bnb') {
-      linkUrl = 'https://www.airbnb.com/rooms/1044731059343257187?source_impression_id=p3_1776513327_P3zWo6C2Zk2Fql-d';
-    } else if (p.eircode) {
-      // If we have an Eircode, use it — Google resolves these precisely
-      linkUrl = `https://www.google.com/maps/search/${encodeURIComponent(p.eircode)}/@${p.lat},${p.lng},17z`;
-    } else {
-      // Pubs, meals, airport, etc. → Google Maps coordinate-pinned search
-      linkUrl = gmapsSearch(p.name, p.lat, p.lng);
-    }
-
-    const dirUrl = gmapsDirections(AIRBNB.eircode, p.lat, p.lng, p.name);
-    const isAirbnb = p.id === 'bnb';
-
-    marker.bindPopup(`
-      <div class="type">${p.type.toUpperCase()}</div>
-      <strong><a href="${linkUrl}" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;">${p.name} ↗</a></strong>
-      <div>${p.desc}</div>
-      ${!isAirbnb ? `<div style="margin-top:0.5rem;"><a href="${dirUrl}" target="_blank" rel="noopener" style="color:var(--brass);font-family:'Cormorant SC',serif;font-size:0.7rem;letter-spacing:0.15em;text-decoration:none;">🗺 DIRECTIONS FROM AIRBNB ↗</a></div>` : ''}
-    `);
-
-    marker.on('click', () => {
-      document.getElementById('pin-detail').innerHTML = `
-        <span class="type-tag">${p.type.toUpperCase()}</span>
-        <span class="name"><a href="${linkUrl}" target="_blank" rel="noopener" style="color:inherit;text-decoration:none;border-bottom:1px dotted var(--brass);">${p.name} ↗</a></span>
-        <p>${p.desc}</p>
-        ${!isAirbnb ? `<a href="${dirUrl}" target="_blank" rel="noopener" class="course-btn" style="margin-top:0.75rem;display:inline-block;">🗺 Directions from Airbnb</a>` : ''}
-      `;
-    });
-    pinLayers[p.type].addLayer(marker);
-    // Asynchronously refine pin position using Eircode/address geocoding
-    refinePinPosition(p, marker);
-  });
-  Object.values(pinLayers).forEach(l => l.addTo(leafletMap));
-
-  routeLayer = L.layerGroup().addTo(leafletMap);
-  Object.entries(courses).forEach(([name, c]) => {
-    const line = L.polyline([[AIRBNB.lat, AIRBNB.lng], [c.lat, c.lng]], {
-      color: '#b08a3e', weight: 2.5, opacity: 0.65, dashArray: '6, 8'
-    });
-    line.bindTooltip(`${name} · ~${drivesFromAirbnb[name]} min`, { direction: 'center' });
-    routeLayer.addLayer(line);
-  });
-
-  const bounds = L.latLngBounds(pins.map(p => [p.lat, p.lng]));
-  leafletMap.fitBounds(bounds, { padding: [30, 30] });
-}
-
-document.querySelectorAll('#filter-btns .filter-btn').forEach(b => {
-  b.addEventListener('click', () => {
-    document.querySelectorAll('#filter-btns .filter-btn').forEach(x => x.classList.remove('active'));
-    b.classList.add('active');
-    const filter = b.dataset.filter;
-    if (!leafletMap) return;
-    if (filter === 'all') {
-      Object.values(pinLayers).forEach(l => leafletMap.addLayer(l));
-    } else {
-      Object.entries(pinLayers).forEach(([type, l]) => {
-        if (type === filter || type === 'travel' || type === 'stay') leafletMap.addLayer(l);
-        else leafletMap.removeLayer(l);
-      });
-    }
-  });
-});
-
-document.getElementById('routes-on').addEventListener('click', () => {
-  if (leafletMap && routeLayer) leafletMap.addLayer(routeLayer);
-  document.getElementById('routes-on').classList.add('active');
-  document.getElementById('routes-off').classList.remove('active');
-});
-document.getElementById('routes-off').addEventListener('click', () => {
-  if (leafletMap && routeLayer) leafletMap.removeLayer(routeLayer);
-  document.getElementById('routes-off').classList.add('active');
-  document.getElementById('routes-on').classList.remove('active');
-});
 </script>
