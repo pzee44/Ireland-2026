@@ -1492,10 +1492,10 @@
           <div class="gmap-panel-section">
             <div class="gmap-section-label">Pin Categories <span class="gmap-cat-hint">(tap to zoom)</span></div>
             <ul class="gmap-category-list">
-              <li data-jump-cat="all"><span class="gmap-cat-icon all">⭐</span><span>Show All</span><span class="gmap-cat-count">32</span></li>
+              <li data-jump-cat="all"><span class="gmap-cat-icon all">⭐</span><span>Show All</span><span class="gmap-cat-count">39</span></li>
               <li data-jump-cat="golf"><span class="gmap-cat-icon golf">⛳</span><span>Golf Courses</span><span class="gmap-cat-count">5</span></li>
               <li data-jump-cat="stay"><span class="gmap-cat-icon stay">🏠</span><span>Airbnb</span><span class="gmap-cat-count">1</span></li>
-              <li data-jump-cat="pub"><span class="gmap-cat-icon pub">🍺</span><span>Pubs</span><span class="gmap-cat-count">14</span></li>
+              <li data-jump-cat="pub"><span class="gmap-cat-icon pub">🍺</span><span>Pubs</span><span class="gmap-cat-count">21</span></li>
               <li data-jump-cat="meal"><span class="gmap-cat-icon meal">🍽</span><span>Meals</span><span class="gmap-cat-count">11</span></li>
               <li data-jump-cat="travel"><span class="gmap-cat-icon travel">✈</span><span>Travel</span><span class="gmap-cat-count">1</span></li>
             </ul>
@@ -1710,8 +1710,8 @@ const trip = [
     items: [
       { time: '8:40 AM', icon: 'golf', label: 'Ring of Kerry GC', note: '5 min drive', courseLink: 'Ring of Kerry' },
       { time: '2:30/2:40', icon: 'golf', label: 'Kenmare GC', note: '10 min drive', courseLink: 'Kenmare GC' },
-      { time: 'Post-round pub', icon: 'pint', label: "Crowley's Bar", note: 'Kenmare · 2 min from Kenmare GC', pinId: 'crowleys' },
-      { time: 'Post-round pub', icon: 'pint', label: "O'Donoghue's", note: 'Kenmare · same block as Crowley\'s', pinId: 'odonoghue' }
+      { time: 'Post-round pub', icon: 'pint', label: "Crowley's Bar", note: 'Kenmare · 2 min from Kenmare GC · Best Guinness in town', pinId: 'crowleys' },
+      { time: 'Post-round pub', icon: 'pint', label: "PF McCarthy's", note: 'Kenmare · one block over · early trad sessions', pinId: 'pfmccarthys' }
     ] },
   { day: 4, date: 'Sept 14', weekday: 'Monday', type: 'golf', dateISO: '2026-09-14', courseId: 'Dooks',
     items: [
@@ -1722,18 +1722,26 @@ const trip = [
   { day: 5, date: 'Sept 15', weekday: 'Tuesday', type: 'golf', dateISO: '2026-09-15', courseId: 'Waterville',
     items: [
       { time: '8:10/8:20', icon: 'golf', label: 'Waterville', note: '1 hr drive', courseLink: 'Waterville' },
-      { time: 'Post-round pub', icon: 'pint', label: "The Blind Piper", note: 'Caherdaniel · trad pub on Ring of Kerry route home', pinId: 'blindpiper' },
-      { time: 'Post-round pub', icon: 'pint', label: "Spillane's Bar", note: 'Templenoe · 5 min from Airbnb', pinId: 'spillanes' }
+      { time: 'Post-round pub', icon: 'pint', label: "Fisherman's Bar (Butler Arms)", note: 'Waterville town · Chaplin\'s old haunt · seafood chowder', pinId: 'fishermans' },
+      { time: 'Post-round pub', icon: 'pint', label: "The Blind Piper", note: 'Caherdaniel · trad pub on Ring of Kerry route home', pinId: 'blindpiper' }
     ] },
   { day: 6, date: 'Sept 16', weekday: 'Wednesday', type: 'golf', dateISO: '2026-09-16', courseId: 'Ballybunion Cashen',
     items: [
       { time: '12:56/1:18', icon: 'golf', label: 'Ballybunion Cashen', note: '1:45 drive', courseLink: 'Ballybunion Cashen' },
-      { time: 'Post-round pub', icon: 'pint', label: "Falvey's Pub", note: 'Killorglin · on N70 heading back from Ballybunion', pinId: 'falveys' },
+      { time: 'Post-round pub', icon: 'pint', label: "Jimmy Brien's", note: 'Killarney · bright green & gold front · best Guinness in Killarney', pinId: 'briens' },
       { time: 'Post-round pub', icon: 'pint', label: "Crowley's Bar", note: 'Kenmare · last stop before the Airbnb', pinId: 'crowleys' }
     ] },
   { day: 7, date: 'Sept 17', weekday: 'Thursday', type: 'rest', dateISO: '2026-09-17', weatherCoords: [52.0599, -9.5044],
     items: [
-      { time: 'All night', icon: 'pint', label: 'Pub crawl in Killarney', note: "The Laurels · Murphy's · Courtney's · Falvey's · JM Reidy's · Jack C's", pinId: 'reidys' }
+      { time: '6:00 PM', icon: 'car', label: 'Declan drops in Killarney', note: '45 min from Templenoe · text driver ~5pm for evening pickup' },
+      { time: '6:15 PM', icon: 'fork', label: 'Dinner · Murphy\'s of Killarney', note: 'Main Street · Beef & Guinness stew, prime steaks · Eat before the pubs get lively', pinId: 'murphys' },
+      { time: '7:45 PM · Stop 1', icon: 'pint', label: "The Laurels", note: '40 Main Street · 4-generation O\'Leary family pub · The sticky toffee pudding is a local legend', pinId: 'laurels' },
+      { time: '8:30 PM · Stop 2', icon: 'pint', label: "JM Reidy's", note: '4/5 Main Street · The "Sweetshop Pub" · Live music typically starting now', pinId: 'reidys' },
+      { time: '9:15 PM · Stop 3', icon: 'pint', label: "Courtney's Bar", note: '24 Plunkett Street · Trad session on Thursdays · Around the corner — 30 sec walk', pinId: 'courtneys' },
+      { time: '10:00 PM · Stop 4', icon: 'pint', label: "Jimmy Brien's", note: 'College Street · Green & gold Kerry-colors exterior · Widely called best Guinness in Killarney', pinId: 'briens' },
+      { time: '10:45 PM · Stop 5', icon: 'pint', label: "O'Connor's Traditional Pub", note: '7 High Street · Compact, packed, live trad most nights · Outdoor barrel tables', pinId: 'oconnor' },
+      { time: '11:30 PM · Last stop', icon: 'pint', label: "The Danny Mann", note: '97 New Street · 70+ years · Flagstone floors, open fire, late trad session · Stays lively to close', pinId: 'dannymann' },
+      { time: 'Late', icon: 'car', label: 'Taxi back to Airbnb', note: 'Killarney taxi rank at the train station · ~45 min to Templenoe · Budget €80-100' }
     ] },
   { day: 8, date: 'Sept 18', weekday: 'Friday', type: 'travel', dateISO: '2026-09-18',
     items: [{ time: 'Day', icon: 'plane', label: 'Fly home' }] }
@@ -1771,6 +1779,9 @@ const pins = [
   { id: 'laurels', type: 'pub', name: "The Laurels", lat: 52.0590, lng: -9.5108, eircode: 'V93 KR52', desc: "40 Main Street, Killarney · O'Leary family, 4 generations" },
   { id: 'falveys', type: 'pub', name: "Falvey's Pub", lat: 52.1053, lng: -9.7830, desc: "Killorglin · 'Ireland's littlest off license' · Across the bridge on N70" },
   { id: 'jackcs', type: 'pub', name: "Jack C's Bar", lat: 52.0613, lng: -9.5112, desc: "Killarney (north end of town) · Tiny family pub since 1901" },
+  { id: 'briens', type: 'pub', name: "Jimmy Brien's", lat: 52.0608, lng: -9.5091, desc: "College Street, Killarney · Bright green & gold exterior (Kerry colours) · Widely considered best Guinness in town · Local favorite" },
+  { id: 'dannymann', type: 'pub', name: 'The Danny Mann', lat: 52.0595, lng: -9.5155, desc: '97 New Street, Killarney · 70+ years · Flagstone floors, open fire, live trad music nightly' },
+  { id: 'katekearneys', type: 'pub', name: "Kate Kearney's Cottage", lat: 52.0367, lng: -9.6550, desc: 'Gap of Dunloe, Beaufort, Killarney · 170-year-old family-run inn at entrance to the Gap · Trad sessions 7 days in season' },
 
   // PUBS — ELSEWHERE (coordinates from Google Maps screenshots)
   { id: 'spillanes', type: 'pub', name: "Spillane's Bar", lat: 51.8633, lng: -9.7000, eircode: 'V93 F623', desc: "Greenane, Templenoe · Named for Kerry GAA legend Pat Spillane · Right on the N70 in Templenoe village" },
@@ -1781,6 +1792,10 @@ const pins = [
   { id: 'crowleys', type: 'pub', name: "Crowley's Bar", lat: 51.8804, lng: -9.5832, eircode: 'V93 Y152', desc: '26 Henry Street, Kenmare · Traditional pub · Best Guinness in Kenmare · Cash only' },
   { id: 'odonoghue', type: 'pub', name: "O'Donoghue's", lat: 51.8810, lng: -9.5828, desc: 'Kenmare · Town pub' },
   { id: 'oconnor', type: 'pub', name: "O'Connor's Traditional Pub", lat: 52.0599, lng: -9.5059, eircode: 'V93 DV26', desc: "7 High Street, Killarney · Compact, packed with character · Outdoor barrel tables" },
+  { id: 'pfmccarthys', type: 'pub', name: "PF McCarthy's", lat: 51.8802, lng: -9.5843, desc: "14 Main Street, Kenmare · One of Kenmare's oldest pubs · Early trad music sessions · Pub grub & craft beer" },
+  { id: 'coachman', type: 'pub', name: "The Coachman", lat: 51.8800, lng: -9.5844, desc: "3 Henry Street, Kenmare · Coachman's Townhouse Hotel bar · Well-regarded trad music venue" },
+  { id: 'fishermans', type: 'pub', name: "Fisherman's Bar (Butler Arms)", lat: 51.8267, lng: -10.1741, desc: "Main Street, Waterville · In the 100-year-old Butler Arms Hotel · Charlie Chaplin's old haunt · Famous seafood chowder & sticky toffee pudding" },
+  { id: 'odwyers', type: 'pub', name: "O'Dwyer's The Villa", lat: 51.8266, lng: -10.1755, desc: "Main Street, Waterville · Established 1973 by Kerry GAA legend Mick O'Dwyer · Sports memorabilia, homemade soup, great Guinness" },
 
   // MEALS — KILLARNEY
   { id: 'cronins', type: 'meal', name: 'Cronin\'s Restaurant', lat: 52.0599, lng: -9.5055, eircode: 'V93 P039', desc: 'College Street, Killarney · Family-run since 1957 · Michelin recommended' },
