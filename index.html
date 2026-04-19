@@ -663,13 +663,42 @@
     grid-template-columns: 32px 1fr auto;
     align-items: center;
     gap: 0.6rem;
-    padding: 0.5rem 0;
+    padding: 0.55rem 0.5rem;
     font-family: 'Libre Caslon Text', serif;
     font-size: 0.88rem;
     color: var(--ink);
     border-bottom: 1px dotted var(--divider);
+    cursor: pointer;
+    transition: background 0.15s, padding-left 0.15s;
+    margin: 0 -0.5rem;
   }
+  .gmap-category-list li:hover {
+    background: var(--cream-warm);
+    padding-left: 0.75rem;
+  }
+  .gmap-category-list li:hover .gmap-cat-count {
+    color: var(--brass-bright);
+  }
+  .gmap-category-list li:hover::after {
+    content: '→';
+    position: absolute;
+    right: 0.4rem;
+    color: var(--brass);
+    font-size: 0.9rem;
+    font-family: 'Libre Caslon Text', serif;
+  }
+  .gmap-category-list li { position: relative; }
   .gmap-category-list li:last-child { border-bottom: none; }
+  .gmap-cat-hint {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.7rem;
+    color: var(--ink-soft);
+    letter-spacing: 0;
+    text-transform: none;
+    margin-left: 0.35rem;
+    opacity: 0.7;
+  }
   .gmap-cat-icon {
     display: inline-flex;
     align-items: center;
@@ -681,6 +710,7 @@
     color: white;
     box-shadow: var(--shadow-soft);
   }
+  .gmap-cat-icon.all { background: var(--forest-deep); color: var(--brass-bright); }
   .gmap-cat-icon.golf { background: var(--forest); }
   .gmap-cat-icon.stay { background: var(--brass); }
   .gmap-cat-icon.pub { background: var(--brass-bright); }
@@ -691,6 +721,7 @@
     font-size: 0.7rem;
     letter-spacing: 0.15em;
     color: var(--brass);
+    transition: color 0.15s;
   }
 
   /* Base camp callout */
@@ -1459,19 +1490,20 @@
           </div>
 
           <div class="gmap-panel-section">
-            <div class="gmap-section-label">Pin Categories</div>
+            <div class="gmap-section-label">Pin Categories <span class="gmap-cat-hint">(tap to zoom)</span></div>
             <ul class="gmap-category-list">
-              <li><span class="gmap-cat-icon golf">⛳</span><span>Golf Courses</span><span class="gmap-cat-count">5</span></li>
-              <li><span class="gmap-cat-icon stay">🏠</span><span>Airbnb</span><span class="gmap-cat-count">1</span></li>
-              <li><span class="gmap-cat-icon pub">🍺</span><span>Pubs</span><span class="gmap-cat-count">14</span></li>
-              <li><span class="gmap-cat-icon meal">🍽</span><span>Meals</span><span class="gmap-cat-count">11</span></li>
-              <li><span class="gmap-cat-icon travel">✈</span><span>Travel</span><span class="gmap-cat-count">1</span></li>
+              <li data-jump-cat="all"><span class="gmap-cat-icon all">⭐</span><span>Show All</span><span class="gmap-cat-count">32</span></li>
+              <li data-jump-cat="golf"><span class="gmap-cat-icon golf">⛳</span><span>Golf Courses</span><span class="gmap-cat-count">5</span></li>
+              <li data-jump-cat="stay"><span class="gmap-cat-icon stay">🏠</span><span>Airbnb</span><span class="gmap-cat-count">1</span></li>
+              <li data-jump-cat="pub"><span class="gmap-cat-icon pub">🍺</span><span>Pubs</span><span class="gmap-cat-count">14</span></li>
+              <li data-jump-cat="meal"><span class="gmap-cat-icon meal">🍽</span><span>Meals</span><span class="gmap-cat-count">11</span></li>
+              <li data-jump-cat="travel"><span class="gmap-cat-icon travel">✈</span><span>Travel</span><span class="gmap-cat-count">1</span></li>
             </ul>
           </div>
 
           <div class="gmap-panel-section">
-            <div class="gmap-section-label">How to Filter</div>
-            <p class="gmap-help">Tap the <strong>layers icon</strong> in the top-left corner of the map to toggle categories on and off. Hide the pubs to see only courses, or vice versa.</p>
+            <div class="gmap-section-label">To Actually Filter Pins</div>
+            <p class="gmap-help">Tap the <strong>layers icon</strong> in the top-left corner of the map to hide categories you don't want. Category clicks above zoom the map; the layers icon removes pins entirely.</p>
           </div>
 
           <div class="gmap-panel-section">
@@ -2095,15 +2127,16 @@ Object.entries(courses).forEach(([name, c]) => {
   }
 });
 // ===== MAP JUMP CHIPS =====
-function jumpToOnMap(lat, lng, label) {
+function jumpToOnMap(lat, lng, label, zoom) {
   const iframe = document.querySelector('.gmap-embed');
   if (!iframe) return;
   // Switch to map tab
   const mapTab = document.querySelector('.tab[data-tab="map"]');
   if (mapTab && !mapTab.classList.contains('active')) mapTab.click();
+  const z = zoom || 14;
   // Rebuild iframe src with ll (lat,lng) and z (zoom) params
   const baseUrl = 'https://www.google.com/maps/d/embed?mid=191rnWNfTaevPxihlNoINlhxYr8g_18U&ehbc=2E312F';
-  iframe.src = `${baseUrl}&ll=${lat}%2C${lng}&z=14`;
+  iframe.src = `${baseUrl}&ll=${lat}%2C${lng}&z=${z}`;
   // Smooth scroll to map
   setTimeout(() => {
     const wrap = document.querySelector('.gmap-wrap');
@@ -2111,11 +2144,52 @@ function jumpToOnMap(lat, lng, label) {
   }, 150);
 }
 
+function jumpToCategory(cat) {
+  // 'all' resets to the default view of everything
+  if (cat === 'all') {
+    jumpToOnMap(52.05, -9.75, 'All', 9);
+    return;
+  }
+  // Collect pins in this category
+  const matched = pins.filter(p => p.type === cat);
+  if (matched.length === 0) return;
+
+  // Compute bounds
+  let minLat = Infinity, maxLat = -Infinity, minLng = Infinity, maxLng = -Infinity;
+  matched.forEach(p => {
+    if (p.lat < minLat) minLat = p.lat;
+    if (p.lat > maxLat) maxLat = p.lat;
+    if (p.lng < minLng) minLng = p.lng;
+    if (p.lng > maxLng) maxLng = p.lng;
+  });
+
+  const centerLat = (minLat + maxLat) / 2;
+  const centerLng = (minLng + maxLng) / 2;
+
+  // Choose zoom based on span (rough heuristic for Kerry region)
+  const latSpan = maxLat - minLat;
+  const lngSpan = maxLng - minLng;
+  const maxSpan = Math.max(latSpan, lngSpan);
+
+  let zoom;
+  if (matched.length === 1 || maxSpan < 0.02) zoom = 14;
+  else if (maxSpan < 0.08) zoom = 12;
+  else if (maxSpan < 0.25) zoom = 11;
+  else if (maxSpan < 0.6) zoom = 10;
+  else zoom = 9;
+
+  jumpToOnMap(centerLat, centerLng, cat, zoom);
+}
+
 document.querySelectorAll('.gmap-chip').forEach(chip => {
   chip.addEventListener('click', () => {
     const [lat, lng] = chip.dataset.jump.split(',').map(parseFloat);
     jumpToOnMap(lat, lng, chip.dataset.label);
   });
+});
+
+document.querySelectorAll('.gmap-category-list li[data-jump-cat]').forEach(li => {
+  li.addEventListener('click', () => jumpToCategory(li.dataset.jumpCat));
 });
 
 // ===== SCORECARD (static reference) =====
